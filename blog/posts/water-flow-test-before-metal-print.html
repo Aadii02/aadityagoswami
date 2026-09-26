@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What a Water Flow Test Taught Me Before a Metal Print — Aaditya Goswami</title>
+<meta name="description" content="Before sending an injector off to be printed in metal, I ran water through a resin copy. The numbers disagreed with the CAD, and that disagreement saved a print.">
+<link rel="canonical" href="https://aadii02.github.io/blog/posts/water-flow-test-before-metal-print.html">
+<meta property="og:site_name" content="Aaditya Goswami — Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What a Water Flow Test Taught Me Before a Metal Print — Aaditya Goswami">
+<meta property="og:description" content="Before sending an injector off to be printed in metal, I ran water through a resin copy. The numbers disagreed with the CAD, and that disagreement saved a print.">
+<meta property="og:url" content="https://aadii02.github.io/blog/posts/water-flow-test-before-metal-print.html">
+<meta property="og:image" content="https://aadii02.github.io/blog/assets/img/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@aadiii_g02">
+<meta name="twitter:title" content="What a Water Flow Test Taught Me Before a Metal Print — Aaditya Goswami">
+<meta name="twitter:description" content="Before sending an injector off to be printed in metal, I ran water through a resin copy. The numbers disagreed with the CAD, and that disagreement saved a print.">
+<meta name="twitter:image" content="https://aadii02.github.io/blog/assets/img/og-default.jpg">
+<meta property="article:published_time" content="2026-09-14">
+<meta property="article:author" content="Aaditya Goswami">
+<meta property="article:section" content="Tech">
+<meta property="article:tag" content="Aerospace">
+<meta property="article:tag" content="Propulsion">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Testing">
+<link rel="alternate" type="application/rss+xml" title="Aaditya Goswami — Blog" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&amp;family=Caveat:wght@500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../assets/blog.css">
+<script src="../../assets/js/theme.js"></script>
+<script src="../../assets/js/main.js" defer></script>
+<script src="../assets/blog.js" defer></script>
+</head>
+<body class="blog page-post post-tech c-tech" data-root="../">
+<a class="skip" href="#main">Skip to content</a>
+<div class="veil" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="wordmark" href="../../index.html"><i aria-hidden="true"></i>Aaditya Goswami</a>
+    <nav class="nav" aria-label="Pages">
+      <span class="nav__pill" aria-hidden="true"></span>
+      <a href="../../index.html">Home</a>
+      <a href="../../about.html">About</a>
+      <a href="../../projects.html">Projects</a>
+      <a href="../index.html" aria-current="true">Blog</a>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+    <button class="theme" id="theme" type="button" aria-label="Switch to light theme">
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </div>
+  <div class="scrollbar" aria-hidden="true"></div>
+</header>
+<aside class="rail" aria-hidden="true">
+  <div class="rail__track">
+    <div class="rail__tick" style="top:0"></div>
+    <div class="rail__tick" style="top:25%"></div>
+    <div class="rail__tick" style="top:50%"></div>
+    <div class="rail__tick" style="top:75%"></div>
+    <div class="rail__tick" style="bottom:0"></div>
+    <div class="rail__cap rail__cap--top"><b>100 km</b>Kármán line</div>
+    <div class="rail__cap rail__cap--bottom"><b>0 km</b>ground</div>
+    <div class="rail__fill"></div>
+    <div class="rail__dot"></div>
+    <div class="rail__read" id="alt">0 km</div>
+  </div>
+</aside>
+
+<main id="main">
+<div class="blogbar wrap">
+  <nav class="blognav" aria-label="Blog sections">
+    <a href="../index.html">Blog home</a>
+    <a class="c-food" href="../food/index.html"><span class="ndot" aria-hidden="true"></span>Food &amp; Places</a>
+    <a class="c-tech" href="../tech/index.html" aria-current="true"><span class="ndot" aria-hidden="true"></span>Tech</a>
+    <a class="c-mind" href="../mind/index.html"><span class="ndot" aria-hidden="true"></span>Mind &amp; Meaning</a>
+    <a href="../about.html">About this blog</a>
+  </nav>
+  <div class="blogbar__tools">
+    <button class="search-btn" type="button" data-open-search aria-haspopup="dialog" aria-label="Search posts"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="search-btn__label">Search</span><kbd class="kbd">/</kbd></button>
+    <a class="blogbar__rss mono" href="../feed.xml">RSS</a>
+  </div>
+</div>
+
+  <article>
+    <script type="application/json" id="post-meta">
+{
+ "slug": "water-flow-test-before-metal-print",
+ "title": "What a Water Flow Test Taught Me Before a Metal Print",
+ "cat": "tech",
+ "sub": "Aerospace",
+ "date": "2026-09-14",
+ "dateLong": "14 Sep 2026",
+ "pinned": true,
+ "excerpt": "Before sending an injector off to be printed in metal, I ran water through a resin copy. The numbers disagreed with the CAD, and that disagreement saved a print.",
+ "lede": "I printed our injector in resin, ran water through it, and measured what it actually flowed. The numbers disagreed with the CAD, and that disagreement saved a metal print.",
+ "photo": "[Hero — flow test rig]",
+ "alt": "The water flow test rig for the LX-1 injector",
+ "tags": [
+  "Aerospace",
+  "Propulsion",
+  "Python",
+  "Testing"
+ ],
+ "headTags": [
+  "Aerospace",
+  "Python"
+ ],
+ "keywords": "injector flow test cold flow metal print resin python discharge coefficient cd propulsion lx-1"
+}
+</script>
+    <header class="phead">
+      <div class="phead__tags reveal"><a class="ctag" href="../tech/index.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>Tech</a><span class="tag">Aerospace</span><span class="tag">Python</span></div>
+      <h1 class="reveal">What a Water Flow Test Taught Me Before a Metal Print</h1>
+      <p class="phead__lede reveal">I printed our injector in resin, ran water through it, and measured what it actually flowed. The numbers disagreed with the CAD, and that disagreement saved a metal print.</p>
+      <div class="meta mono reveal"><time datetime="2026-09-14">14 Sep 2026</time><span class="sep" aria-hidden="true">·</span><span><!-- gen:read -->2 min read<!-- /gen:read --></span><span class="sep" aria-hidden="true">·</span><span>Tech / Aerospace</span></div>
+    </header>
+
+    <figure class="phero reveal">
+      <div class="ph ph-tech"><img src="../assets/img/placeholder-tech.jpg" alt="Diagram of the water flow test rig" width="1200" height="550" fetchpriority="high" decoding="async"><svg viewBox="0 0 960 440" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <g stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round">
+          <rect x="400" y="96" width="160" height="190" rx="8"/><circle cx="480" cy="170" r="30"/>
+          <path d="M430 286v60M480 286v76M530 286v60"/><path d="M200 150h200M560 150h180" stroke-dasharray="5 6"/>
+          <rect x="150" y="128" width="50" height="44" rx="4"/><path d="M430 378h100" opacity="0.6"/>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--muted)">
+          <text x="150" y="118">P1 · transducer</text><text x="600" y="140">supply · regulated</text>
+          <text x="572" y="330">3 × orifice (as drawn)</text><text x="420" y="404">catch + scale</text>
+        </g>
+      </svg><span class="phl" aria-hidden="true">[Hero — rig photo or diagram]</span></div>
+      
+    </figure>
+
+<!-- body -->
+    <div class="ptech">
+      <nav class="toc" aria-label="On this page">
+        <div class="toc__title mono">On this page</div>
+        <a href="#why"><i aria-hidden="true"></i>Why test with water first</a>
+        <a href="#rig"><i aria-hidden="true"></i>The rig</a>
+        <a href="#cd"><i aria-hidden="true"></i>Computing Cd</a>
+        <a href="#changed"><i aria-hidden="true"></i>What changed in the print</a>
+        <a href="#takeaways"><i aria-hidden="true"></i>Takeaways</a>
+        <div class="toc__foot mono"><span><!-- gen:read -->2 min read<!-- /gen:read --></span><span class="toc__pct">0%</span></div>
+      </nav>
+      <div class="pbody">
+      <p>Metal printing an injector is slow and expensive. Water is free. So before sending the file for our LX-1 injector off to be printed in metal, I printed it in resin, bolted it to a garden-hose rig and measured how much water it actually flowed.</p>
+      <p>The short version: the injector flowed less than the CAD said it should. Not by a disaster, but by enough that the engine would have run rich of where we designed it.</p>
+
+      <h2 id="why"><span class="n">01</span>Why test with water first</h2>
+      <p>An injector is mostly holes. Their size, angle and finish decide how much propellant goes through at a given pressure drop, and small errors compound. A cold-flow test with water is the cheapest way to find out if the holes you drew are the holes you got.</p>
+      <div class="note"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>A water test gives you a <strong>discharge coefficient</strong>, not a combustion result. It says nothing about mixing or stability. It only tells you how the geometry flows.</span></div>
+
+      <h2 id="rig"><span class="n">02</span>The rig</h2>
+      <p>Nothing fancy. Everything came from the lab shelf or a hardware store near Dilshad Garden.</p>
+      <ul>
+        <li><span class="mono">Supply</span><span>Mains water through a regulator, so the pressure holds steady for each run.</span></li>
+        <li><span class="mono">Pressure</span><span>One transducer just upstream of the injector, logged over serial.</span></li>
+        <li><span class="mono">Flow</span><span>A catch bucket on a kitchen scale and a stopwatch. Crude, repeatable.</span></li>
+      </ul>
+
+      <h2 id="cd"><span class="n">03</span>Computing Cd</h2>
+      <p>For each run you know the mass caught, the time, and the pressure drop. Divide the real mass flow by the ideal one and you get <code class="ic">Cd</code>:</p>
+      <div class="code">
+        <div class="code__top">
+          <span class="code__file mono"><b>cd.py</b><span>python</span></span>
+          <button class="copy" type="button" aria-label="Copy code"><svg class="idle" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg><svg class="ok" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span class="copy__label">Copy</span></button>
+        </div>
+        <pre tabindex="0"><code><span class="ln"><span class="k">import</span> numpy <span class="k">as</span> np</span><span class="ln"> </span><span class="ln">RHO = <span class="nu">998.0</span>          <span class="cm"># water, kg/m^3</span></span><span class="ln">D_ORIFICE = <span class="nu">0.8e-3</span>   <span class="cm"># m, as drawn in CAD</span></span><span class="ln"> </span><span class="ln"><span class="k">def</span> <span class="f">discharge_coeff</span>(mass_kg, t_s, dp_pa, n_holes):</span><span class="ln">    <span class="s">"""Cd from a timed catch at a steady pressure drop."""</span></span><span class="ln">    mdot = mass_kg / t_s</span><span class="ln">    area = n_holes * np.pi * (D_ORIFICE / <span class="nu">2</span>) ** <span class="nu">2</span></span><span class="ln">    ideal = area * np.sqrt(<span class="nu">2</span> * RHO * dp_pa)</span><span class="ln">    <span class="k">return</span> mdot / ideal</span></code></pre>
+      </div>
+      <p>Every run landed below the Cd the design assumed. Printed holes come out a touch undersized and rough-walled, and resin and metal both do it. The CAD was drawn for perfect holes.</p>
+
+      <h2 id="changed"><span class="n">04</span>What changed in the print</h2>
+      <p>Instead of trusting the drawing, I resized the orifices from the measured Cd so the metal part would flow what the engine needs. Then I re-printed the resin copy at the new size and ran the rig again before sending anything out. It matched.</p>
+      <p>One extra resin print and an afternoon with a hose, versus a metal part that would have been wrong on arrival. Easy trade.</p>
+
+      <h2 id="takeaways"><span class="n">05</span>Takeaways</h2>
+      <ol>
+        <li>Test the geometry you got, not the geometry you drew.</li>
+        <li>Cheap rigs are fine if they are repeatable. Log every run.</li>
+        <li>Put the measured Cd back into the model before the next print.</li>
+      </ol>
+      <p>The full rig notes and the logging script are on <a href="https://github.com/Aadii02" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+      </div>
+    </div>
+<!-- /body -->
+
+    <div class="pend">
+      <div class="pend__tags" aria-label="Tags"><span class="tag">Aerospace</span><span class="tag">Propulsion</span><span class="tag">Python</span><span class="tag">Testing</span></div>
+
+      <div class="card bio">
+        <div class="ph ph-me"><img src="../assets/img/placeholder-portrait.jpg" alt="Portrait of Aaditya Goswami" width="900" height="1200" loading="lazy" decoding="async"></div>
+        <div>
+          <div class="bio__name">Aaditya Goswami</div>
+          <div class="bio__role mono">Founder &amp; CEO, SkyLakes Aerospace</div>
+          <p>Building reusable small-lift launch vehicles in Delhi, studying mechanical engineering, and writing down what I learn on the way.</p>
+          <div class="links">
+            <a class="btn btn--sm" href="../../index.html">Portfolio ↗</a>
+            <a class="btn btn--sm" href="https://skylakes.space" target="_blank" rel="noopener noreferrer">SkyLakes Aerospace ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <section class="more" aria-label="More from Tech">
+        <!-- gen:more --><h2>More from Tech <em>2 posts</em></h2>
+        <a href="understanding-vector-databases.html"><span class="ph ph-tech" aria-hidden="true"></span><span class="more__s"><span class="more__m mono">09 Sep 2026 · 2 min</span><span class="more__t">Understanding Vector Databases</span></span></a><!-- /gen:more -->
+      </section>
+
+      <div class="card nl">
+        <div class="nl__kick mono"><i aria-hidden="true"></i>Newsletter</div>
+        <h2 class="nl__title">Get the next one by email</h2>
+        <p>Engineering notes, food finds and the odd essay. One email per post, sent through Substack.</p>
+        <form class="nlform" action="https://aadityagoswami.substack.com/api/v1/free?nojs=true" method="post" target="_blank">
+            <label class="sr-only" for="post-email">Email address</label>
+            <input class="inp" id="post-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            <button class="btn btn--primary" type="submit">Subscribe</button>
+          </form>
+        <span class="nl__small mono">No spam. Unsubscribe any time.</span>
+      </div>
+    </div>
+  </article>
+</main>
+
+<div class="search" id="search" hidden>
+  <div class="search__scrim" data-close-search></div>
+  <div class="search__panel" role="dialog" aria-modal="true" aria-label="Search posts">
+    <div class="search__bar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <label class="sr-only" for="search-input">Search posts</label>
+      <input class="search__input" id="search-input" type="search" placeholder="Search posts, places, tools…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="search-results" aria-autocomplete="list">
+      <button class="kbd search__close" type="button" data-close-search aria-label="Close search">Esc</button>
+    </div>
+    <div class="search__cats" role="group" aria-label="Filter by category">
+      <button class="schip c-all" type="button" data-cat="all" aria-pressed="true"><i></i>All</button>
+      <button class="schip c-food" type="button" data-cat="food" aria-pressed="false"><i></i>Food &amp; Places</button>
+      <button class="schip c-tech" type="button" data-cat="tech" aria-pressed="false"><i></i>Tech</button>
+      <button class="schip c-mind" type="button" data-cat="mind" aria-pressed="false"><i></i>Mind &amp; Meaning</button>
+    </div>
+    <div class="search__body">
+      <div class="search__count mono" id="search-count" role="status" aria-live="polite"></div>
+      <div id="search-results" role="listbox" aria-label="Results"></div>
+      <p class="search__empty" id="search-empty" hidden>No posts match that. Try a place, a tool, or a broader word.</p>
+    </div>
+    <div class="search__foot mono">
+      <span class="search__hint"><span><kbd class="kbd">↑</kbd> <kbd class="kbd">↓</kbd> move</span><span><kbd class="kbd">↵</kbd> open</span></span>
+      <span>Runs in your browser · search-index.json</span>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer>
+  <span>© 2026 Aaditya Goswami</span>
+  <span>Built in Delhi · <a href="https://skylakes.space" target="_blank" rel="noopener noreferrer">skylakes.space</a></span>
+</footer>
+</body>
+</html>

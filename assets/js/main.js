@@ -83,7 +83,7 @@
   var nav = document.querySelector('.nav');
   var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
   var pill = document.querySelector('.nav__pill');
-  function currentLink() { return document.querySelector('.nav a[aria-current="page"]'); }
+  function currentLink() { return document.querySelector('.nav a[aria-current="page"], .nav a[aria-current="true"]'); }
   function movePill(a) {
     if (!pill || !a) return;
     pill.style.width = a.offsetWidth + 'px';
@@ -109,13 +109,15 @@
   })();
   links.forEach(function (a) {
     a.addEventListener('mouseenter', function () { movePill(a); });
+    a.addEventListener('focus', function () { movePill(a); });
   });
   nav.addEventListener('mouseleave', restPill);
+  nav.addEventListener('focusout', function (e) { if (!nav.contains(e.relatedTarget)) restPill(); });
   window.addEventListener('resize', restPill);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(restPill);
 
-  /* ---- pointer glow on blog cards ---- */
-  document.querySelectorAll('.post').forEach(function (card) {
+  /* ---- pointer glow on cards ---- */
+  document.querySelectorAll('.post, .card').forEach(function (card) {
     card.addEventListener('pointermove', function (e) {
       var r = card.getBoundingClientRect();
       card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
@@ -124,7 +126,7 @@
   });
 
   /* ---- project filters (projects.html) ---- */
-  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.filters .chip'));
   var projects = Array.prototype.slice.call(document.querySelectorAll('.proj'));
   var countEl = document.getElementById('proj-count');
   var emptyEl = document.getElementById('empty');

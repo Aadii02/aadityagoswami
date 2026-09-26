@@ -13,7 +13,7 @@
   --dim: #626A88;
   --accent: #4A7FF7;
   --accent-bright: #6E9BFF;
-  --accent-soft: rgba(74, 127, 247, 0.13);
+  --accent-soft: rgba(74, 127, 247, 0.13); --accent-strong: #3867E0; --accent-strong-hover: #2F5FE0;
   --star: #8A93B5;
   --glow: rgba(74, 127, 247, 0.35);
   --hot: #F2994A;
@@ -32,7 +32,7 @@
     --bg: #F7F8FC; --surface: #FFFFFF; --surface-2: #F1F3FA;
     --border: #DFE3EF; --border-strong: #C3CADD;
     --text: #10131C; --muted: #4F5771; --dim: #7F87A2;
-    --accent: #2F5FE0; --accent-bright: #2450CE; --accent-soft: rgba(47, 95, 224, 0.09);
+    --accent: #2F5FE0; --accent-bright: #2450CE; --accent-soft: rgba(47, 95, 224, 0.09); --accent-strong: #2F5FE0; --accent-strong-hover: #2450CE;
     --star: #A9B2CC; --glow: rgba(47, 95, 224, 0.22);
     color-scheme: light;
   }
@@ -41,7 +41,7 @@
   --bg: #F7F8FC; --surface: #FFFFFF; --surface-2: #F1F3FA;
   --border: #DFE3EF; --border-strong: #C3CADD;
   --text: #10131C; --muted: #4F5771; --dim: #7F87A2;
-  --accent: #2F5FE0; --accent-bright: #2450CE; --accent-soft: rgba(47, 95, 224, 0.09);
+  --accent: #2F5FE0; --accent-bright: #2450CE; --accent-soft: rgba(47, 95, 224, 0.09); --accent-strong: #2F5FE0; --accent-strong-hover: #2450CE;
   --star: #A9B2CC; --glow: rgba(47, 95, 224, 0.22);
   color-scheme: light;
 }
@@ -49,7 +49,7 @@
   --bg: #0E1016; --surface: #161A24; --surface-2: #1D2230;
   --border: #262B3D; --border-strong: #37405C;
   --text: #EEF1FA; --muted: #949CB8; --dim: #626A88;
-  --accent: #4A7FF7; --accent-bright: #6E9BFF; --accent-soft: rgba(74, 127, 247, 0.13);
+  --accent: #4A7FF7; --accent-bright: #6E9BFF; --accent-soft: rgba(74, 127, 247, 0.13); --accent-strong: #3867E0; --accent-strong-hover: #2F5FE0;
   --star: #8A93B5; --glow: rgba(74, 127, 247, 0.35);
   color-scheme: dark;
 }
@@ -117,7 +117,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   white-space: nowrap; transition: color .2s var(--ease);
 }
 .nav a:hover { color: var(--text); }
-.nav a[aria-current="page"] { color: var(--accent-bright); }
+.nav a[aria-current="page"], .nav a[aria-current="true"] { color: var(--accent-bright); }
 .nav__pill {
   position: absolute; top: 0; bottom: 0; left: 0; width: 0; border-radius: 8px;
   background: var(--accent-soft); opacity: 0;
@@ -143,7 +143,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- altitude rail ---------- */
 .rail { display: none; }
-@media (min-width: 1240px) {
+@media (min-width: 1200px) {
   .rail {
     display: block; position: fixed; z-index: 10; pointer-events: none;
     left: clamp(24px, 4vw, 72px);
@@ -275,8 +275,8 @@ h1 { font-size: clamp(42px, 9.5vw, 78px); font-weight: 700; line-height: 0.98; l
 .btn:hover { border-color: var(--border-strong); background: var(--surface-2); transform: translateY(-2px); }
 .btn:hover::after { transform: translateX(120%); }
 .btn:active { transform: translateY(0); }
-.btn--primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 500; }
-.btn--primary:hover { background: var(--accent-bright); border-color: var(--accent-bright); box-shadow: 0 8px 24px -10px var(--glow); }
+.btn--primary { background: var(--accent-strong); border-color: var(--accent-strong); color: #fff; font-weight: 500; }
+.btn--primary:hover { background: var(--accent-strong-hover); border-color: var(--accent-strong-hover); box-shadow: 0 8px 24px -10px var(--glow); }
 
 .now {
   margin-top: 40px; display: flex; gap: 12px; align-items: flex-start;
@@ -404,7 +404,7 @@ h1 { font-size: clamp(42px, 9.5vw, 78px); font-weight: 700; line-height: 0.98; l
 }
 .chip:hover { color: var(--text); border-color: var(--border-strong); transform: translateY(-2px); }
 .chip[aria-pressed="true"] {
-  color: #fff; background: var(--accent); border-color: var(--accent);
+  color: #fff; background: var(--accent-strong); border-color: var(--accent-strong);
   box-shadow: 0 8px 22px -12px var(--glow);
 }
 .empty { margin-top: 24px; color: var(--muted); font-size: 15px; }
@@ -460,7 +460,7 @@ h1 { font-size: clamp(42px, 9.5vw, 78px); font-weight: 700; line-height: 0.98; l
 
 footer {
   max-width: var(--shell); margin: 0 auto; padding: 64px 24px 44px;
-  color: var(--dim); font-size: 13.5px;
+  color: var(--muted); font-size: 13.5px;
   display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
 }
 footer a { color: var(--muted); transition: color .2s; }

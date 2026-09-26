@@ -1,0 +1,78 @@
+{
+ "posts": [
+  {
+   "title": "Best Vada Pav Spots in Mumbai",
+   "url": "posts/best-vada-pav-spots-in-mumbai.html",
+   "cat": "food",
+   "catLabel": "Food & Places",
+   "sub": "Food",
+   "place": "Mumbai",
+   "date": "2026-09-21",
+   "dateShort": "21 Sep",
+   "read": "1 min",
+   "excerpt": "Six stalls, two days, one very full stomach. Ranked by the chutney, the pav, and whether the queue was worth it.",
+   "tags": [
+    "Mumbai",
+    "Street food",
+    "Food guide"
+   ],
+   "words": "mumbai dadar thane csmt street food vada pav chutney chura"
+  },
+  {
+   "title": "On Doing Less, Better",
+   "url": "posts/on-doing-less-better.html",
+   "cat": "mind",
+   "catLabel": "Mind & Meaning",
+   "sub": "Habits",
+   "place": "",
+   "date": "2026-09-17",
+   "dateShort": "17 Sep",
+   "read": "1 min",
+   "excerpt": "I cut my to-do list in half for a month. The work that survived was the work that mattered.",
+   "tags": [
+    "Habits",
+    "Focus",
+    "Work"
+   ],
+   "words": "habits focus essentialism work to-do list productivity"
+  },
+  {
+   "title": "What a Water Flow Test Taught Me Before a Metal Print",
+   "url": "posts/water-flow-test-before-metal-print.html",
+   "cat": "tech",
+   "catLabel": "Tech",
+   "sub": "Aerospace",
+   "place": "",
+   "date": "2026-09-14",
+   "dateShort": "14 Sep",
+   "read": "2 min",
+   "excerpt": "Before sending an injector off to be printed in metal, I ran water through a resin copy. The numbers disagreed with the CAD, and that disagreement saved a print.",
+   "tags": [
+    "Aerospace",
+    "Propulsion",
+    "Python",
+    "Testing"
+   ],
+   "words": "injector flow test cold flow metal print resin python discharge coefficient cd propulsion lx-1"
+  },
+  {
+   "title": "Understanding Vector Databases",
+   "url": "posts/understanding-vector-databases.html",
+   "cat": "tech",
+   "catLabel": "Tech",
+   "sub": "AI",
+   "place": "",
+   "date": "2026-09-09",
+   "dateShort": "09 Sep",
+   "read": "2 min",
+   "excerpt": "What embeddings are, why similarity search needs its own index, and when a plain Postgres table is enough.",
+   "tags": [
+    "AI",
+    "Databases",
+    "Postgres",
+    "Python"
+   ],
+   "words": "embeddings vector search similarity nearest neighbour ann hnsw ivf pgvector postgres ai"
+  }
+ ]
+}
