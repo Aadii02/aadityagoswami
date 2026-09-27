@@ -1,69 +1,58 @@
-# Blog build notes
+# Site and blog build notes
 
-Built from `design import/HANDOFF.md` and the mockups in `design import/blog-handoff.zip` (`design/*.dc.html`).
+The whole site (portfolio + blog) follows the redesign handoff (`portfolio-redesign-handoff.zip` in `design import/`: `DESIGN_SPEC.md`, `styles/theme.css`, `design-reference/*.dc.html`).
 No framework and no build step: GitHub Pages serves these files as they are.
 
 ## Layout
 
 ```
+index.html  about.html  projects.html  contact.html  404.html  blog.html (redirect to blog/)
+assets/css/theme.css     the only stylesheet: the handoff's theme.css, then a "Site layer" section
+assets/js/site.js        theme toggle, mobile menu, grid layout, Projects + blog index filters
+assets/data/projects.json  the projects, in display order
 blog/
   index.html  about.html  search-index.json  feed.xml
-  food/index.html  tech/index.html  mind/index.html
+  tech/index.html  mind/index.html  food/index.html   (one page per notebook)
   posts/<slug>.html
-  assets/blog.css  assets/blog.js  assets/img/
+  assets/blog.js  assets/img/
   tools/build.mjs   (optional helper, see below)
 ```
 
-Every blog page loads the portfolio's own `assets/css/style.css`, `assets/js/theme.js` and `assets/js/main.js` first, then `blog/assets/blog.css` and `blog.js`.
-The blog is a section of the portfolio, not a separate site. Every blog page uses the portfolio's own header (Home, About, Projects, **Blog** marked active, Contact, theme toggle) and footer, word for word. Only the relative paths change with folder depth: `../` from `blog/`, `../../` from `blog/posts/` and the category folders.
-Directly under the header, a **blog bar** holds the blog's own navigation: Blog home, Food & Places, Tech, Mind & Meaning, About this blog, plus Search (also on the `/` key) and RSS.
-Buttons, tags, rows, reveals, the rail, the toast and the rocket cursor also come from the portfolio. `blog.css` only adds the category tokens, blog bar, cards, filters, article templates and the search overlay.
-The theme uses the same `localStorage` key (`theme`) as the portfolio, so a choice made on either side carries over.
+- **Colours:** components only use the role tokens (`--ink`, `--espresso`, `--copper`, `--ember`, `--stone`, `--paper`, plus the derived `--paper-soft`, `--line`, `--copper-text`, `--ember-text`). The only hex values are in the two token blocks at the top of `theme.css`.
+- **Theme:** dark is the default. An inline script in every `<head>` sets `data-theme` on `<html>` before first paint: the saved choice from `localStorage['ag-theme']` (or the old `theme` key, so earlier visitors keep theirs), otherwise `prefers-color-scheme`. Clicking the toggle saves to `ag-theme`.
+- **Header and footer** are identical on every page; only relative paths change with folder depth (`../` from `blog/`, `../../` from `blog/posts/` and the notebook folders). Blog is `aria-current="page"` on the blog home and `aria-current="true"` on other blog pages.
+- **Blog bar:** on posts, notebook pages and About this blog, a slim bar under the header holds a breadcrumb, "About this blog", Search (also on the `/` key) and RSS. The blog index has the inline search from the design instead (`/` focuses it).
 
 ## Adding a post
 
-1. Copy one of the files in `posts/` that matches the category, and rename it to the new slug.
-2. Edit the JSON block at the top of the `<article>` (`<script type="application/json" id="post-meta">`). Fill in `title`, `cat` (`food` / `tech` / `mind`), `sub`, `date` (YYYY-MM-DD), `excerpt`, `photo`, `alt`, `tags`, `keywords`, plus `place` and `mustTry` for food posts. Set `"pinned": true` to feature the post on the home page.
-3. Edit the page head (title, description, `og:*`, `article:*`), the blog bar's `aria-current` (it goes on the post's category), the article header, and the text between `<!-- body -->` and `<!-- /body -->`. Leave the site header and footer alone: they must stay identical to the portfolio's.
-4. Run `node blog/tools/build.mjs` from the repo root. It refreshes every list, count, "More from" block, the read times, `search-index.json` and `feed.xml`. It only rewrites text between `<!-- gen:NAME -->` markers, so hand edits elsewhere are safe. Running it twice changes nothing.
+1. Copy one of the files in `posts/` that matches the notebook, and rename it to the new slug.
+2. Edit the JSON block at the top of the `<article>` (`<script type="application/json" id="post-meta">`). Fill in `title`, `cat` (`tech` / `mind` / `food`), `sub`, `date` (YYYY-MM-DD), `excerpt`, `photo`, `alt`, `tags`, `keywords`, plus `place` and `mustTry` for food posts.
+   - The newest post is the featured card on the blog home. Its right-hand panel shows `feature.stats` (big numbers) and `feature.tags`, and the card's link text is `feature.cta`. Without a `feature` block it shows the read time and the post's first three tags. Only use numbers that are in the post.
+3. Edit the page head (title, description, `og:*`, `article:*`), the breadcrumb's notebook link, the article header, and the text between `<!-- body -->` and `<!-- /body -->`.
+4. Run `node blog/tools/build.mjs` from the repo root. It only rewrites text between `<!-- gen:NAME -->` markers, so hand edits elsewhere are safe, and running it twice changes nothing. It refreshes:
+   - the blog home: the "Latest" line, ticker, featured post, notebook chips and counts, posts grid, "Pick a notebook" cards and archive rows
+   - the notebook pages' counts, chips and grids
+   - "03 — From the blog" on the portfolio homepage (the 3 newest posts)
+   - each post's read time and "More from" block
+   - the Projects page (tally, chips, grid) from `assets/data/projects.json`
+   - `search-index.json` and `feed.xml`
 
 If Node isn't available, you can edit the marked regions by hand. The output is plain HTML.
+If a post is cross-posted, add `"substack": "https://aadityagoswami.substack.com/p/…"` to its meta block. The script then puts a small "Also on Substack ↗" line inside the post, above the tags.
+The two older Substack essays under "From the archive" are the `ARCHIVE` list at the top of `build.mjs`.
 
-## Judgement calls
+## Notes
 
-- **Folder name:** the brief says `design-import/`; the actual folder is `design import/`, with the design files inside `blog-handoff.zip`. I read them from there.
-- **Header and footer:** these are the portfolio's, unchanged, including the 820px floating bar. The mockups' blog-specific header (categories, search and a Portfolio button) and its four-column footer were replaced. Categories and search now live in the blog bar. The footer newsletter form is gone; newsletter sign-up remains on every article and as the "Subscribe on Substack" button on the blog home and About this blog.
-- **Home link:** the portfolio nav gained a **Home** link on every page, portfolio and blog, so the two headers really are identical. Before, the portfolio had no Home item and the name in the header was the only way home.
-- **Blog about page:** it's labelled "About this blog" in the blog bar and page title, so it doesn't clash with the portfolio's About.
-- **Old `blog.html`:** this is now a redirect (meta refresh + canonical + a visible link) to `blog/index.html`.
-- **Only real posts are listed.** The mockups show about 23 example posts (8 Food, 9 Tech, 6 Mind). I built the 4 sample posts and listed only those, so there are no dead links and every count is true. Filter chips still show every subcategory, with a count of 0 and an empty state where nothing exists yet.
-- **The 4th sample post** is "Understanding Vector Databases" (Tech / AI). The mockups only have three article designs, so it reuses the Tech template (TOC, code block, notes). Its copy is a short general explainer, not personal claims.
-- **Read times** are computed from each post's word count (about 220 words per minute), so the short sample posts show 1–2 min instead of the mockups' 6–9 min. They grow as you write.
-- **Newsletter forms** post to `https://aadityagoswami.substack.com/api/v1/free?nojs=true` and open in a new tab. I knew the Substack name from the portfolio, so I didn't leave `SUBSTACK_URL_HERE`. This is the endpoint custom Substack forms commonly use, but it's not an official documented API. If Substack changes it, swap each `<form>` for the iframe from Substack → Settings → Embed. "Subscribe on Substack" buttons link to `/subscribe`.
-- **Photos:** every photo box is a real `<img>` with alt text, width/height and `loading="lazy"`, pointing at `assets/img/placeholder-*.jpg`. While the file name contains `placeholder-`, the image is transparent, so the patterned box and its `[label]` stay visible as in the mockups. Drop in a real photo under a new name, update `src`, and it shows automatically. Above-the-fold images (article heroes, home portrait) use eager loading with `fetchpriority="high"` instead of lazy, to avoid slowing the first paint.
-- **Share previews** use `assets/img/og-default.jpg` (a 1200×630 card) for every page until real photos exist. The absolute URLs assume the site is served at `https://aadii02.github.io/`. If it ends up at `/portfolio/` or a custom domain, change `SITE` in `tools/build.mjs` and the `og:url` / `og:image` / canonical tags in each page head.
-- **Altitude rail:** this reuses the portfolio's rail, coloured by category. It shows at ≥1200px (the portfolio breakpoint moved from 1240px to 1200px to match the brief). The readout shows whole km, not the mockup's `42.1 km`. Below 1200px the header's progress bar does the job.
-- **Table of contents:** a sticky right column at ≥1280px. Narrower screens can't fit 680px of text plus the TOC next to the rail, so there it becomes a box above the article.
-- **Active states:** Blog is `aria-current="page"` on the blog home and `aria-current="true"` on other blog pages (you're in that section, not on its page). The same applies to the category in the blog bar on article pages. The portfolio's `main.js` and `style.css` accept both values.
-- **Contrast fixes beyond the mockups:**
-  - Primary buttons use `#3867E0` in dark mode (white text 5.0:1; the mockup blue was 3.7:1). This is set in the portfolio stylesheet, so the portfolio buttons match.
-  - Pressed Food chips in light mode use `#A8581B`.
-  - Grey `--dim` text is replaced by `--muted` across the blog.
-  - Category tags mix 20% of the text colour into the ink.
-  - The shared footer text moved from `--dim` to `--muted` (it was under 4.5:1), which also improves the portfolio pages.
-
-## Verified
-
-- Every page at 380px and 1440px, in dark and light: no horizontal scroll, no console errors, and every reveal becomes visible by the bottom of the page. Article rails read 100 km at the bottom.
-- axe-core 4.10 (the engine behind Lighthouse's accessibility score): 0 violations on all 9 pages, both themes, both widths (WCAG 2.1 AA + best practices).
-- Search: `/` and the header button open it, text and category filtering work, ↑/↓/Enter/Esc work, focus is trapped, and scroll unlocks on close.
-- Filters: 200ms fade, stagger back in, and state in the hash (`tech/#ai` loads filtered).
-- Code copy and toast, the TOC highlight, and theme persistence across the blog and the portfolio.
-- All 325 local links resolve. `feed.xml` is valid RSS; `search-index.json` is valid.
+- **Only real posts are listed**, so every count is true. The grid, chips and search all come from the four posts in `posts/`.
+- **Read times** are computed from each post's word count (about 220 words per minute).
+- **Photos:** every photo box is a real `<img>` pointing at `assets/img/placeholder-*.jpg`. While the file name contains `placeholder-`, the image stays invisible, so the dashed box and its `[label]` show. Drop in a real photo under a new name and update `src`.
+- **Share previews** use `assets/img/og-default.jpg`. Absolute URLs (feed, canonical, `og:url`) use `SITE` in `tools/build.mjs`: `https://aadii02.github.io/aadityagoswami/blog/`. It used to be `https://aadii02.github.io/blog/`, which 404s.
+- **Newsletter forms** post to `https://aadityagoswami.substack.com/api/v1/free?nojs=true` in a new tab. This isn't an official documented API. If Substack changes it, swap each `<form>` for the iframe from Substack → Settings → Embed.
+- **Contrast:** two derived tokens keep small text at 4.5:1 or better. `--copper-text` is copper lifted 15% toward paper in dark, where raw copper on ink is 4.1:1. `--ember-text` is ember 10% toward paper in light, where raw ember on espresso is 4.2:1. Large display text, borders and fills use the raw tokens.
+- **Motion:** everything animated (rise, starfield drift, orbits, tickers, pulse, flame, hover tilt) is switched off under `prefers-reduced-motion`. Tickers also pause on hover.
 
 ## Still to do
 
-- Real photos and a portrait. Replace the `placeholder-*.jpg` references.
-- Real posts. The sample copy is from the mockups.
+- Real photos and a portrait. Replace the `[YOUR PHOTO]` boxes and the `placeholder-*.jpg` references.
+- Mission Control has no public repo (the old `Skylakes_Flight_Panal` link 404s). Its card shows "TODO: repo link".
 - Check the Substack form endpoint with a real sign-up after deploying.
-- If you change the `SITE` URL, update the absolute share/canonical URLs (see above).

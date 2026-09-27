@@ -1,260 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Aaditya Goswami — Founder, SkyLakes Aerospace</title>
-<meta name="description" content="Aaditya Goswami builds reusable launch vehicles at SkyLakes Aerospace in Delhi — propulsion, avionics and simulation software.">
+<title>Aaditya Goswami — tinkerer, engineering student and writer</title>
+<meta name="description" content="Aaditya Goswami takes things apart to see how they work. Builder, mechanical engineering student at IPEC in Delhi, and weekly writer: rocket engines, simulators, data and the odd food ranking.">
 <meta property="og:title" content="Aaditya Goswami">
-<meta property="og:description" content="Building reusable rockets for India.">
+<meta property="og:description" content="I take things apart to see how they work.">
 <meta property="og:type" content="profile">
+<meta name="color-scheme" content="dark light">
+<script>(function(d){var t;try{t=localStorage.getItem('ag-theme')||localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.setAttribute('data-theme',t);d.classList.add('js')})(document.documentElement)</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/main.js" defer></script>
+<link rel="alternate" type="application/rss+xml" title="Aaditya Goswami — Blog" href="blog/feed.xml">
+<link rel="stylesheet" href="assets/css/theme.css">
+<script src="assets/js/site.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="veil" aria-hidden="true"></div>
 
 <header class="site-header">
-  <div class="site-header__inner">
-    <a class="wordmark" href="index.html"><i aria-hidden="true"></i>Aaditya Goswami</a>
-    <nav class="nav" aria-label="Pages">
-      <span class="nav__pill" aria-hidden="true"></span>
+  <nav class="site-nav" aria-label="Main">
+    <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links">Menu <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+    <div class="nav-links" id="nav-links">
       <a href="index.html" aria-current="page">Home</a>
       <a href="about.html">About</a>
       <a href="projects.html">Projects</a>
       <a href="blog/index.html">Blog</a>
       <a href="contact.html">Contact</a>
-    </nav>
-    <button class="theme" id="theme" type="button" aria-label="Switch to light theme">
-      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </div>
+    <button class="theme-toggle" type="button" aria-label="Switch to light theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
     </button>
-  </div>
-  <div class="scrollbar" aria-hidden="true"></div>
+  </nav>
 </header>
-
-<aside class="rail" aria-hidden="true">
-  <div class="rail__track">
-    <div class="rail__tick" style="top:0"></div>
-    <div class="rail__tick" style="top:25%"></div>
-    <div class="rail__tick" style="top:50%"></div>
-    <div class="rail__tick" style="top:75%"></div>
-    <div class="rail__tick" style="bottom:0"></div>
-    <div class="rail__cap rail__cap--top"><b>100 km</b>Kármán line</div>
-    <div class="rail__cap rail__cap--bottom"><b>0 km</b>ground</div>
-    <div class="rail__fill"></div>
-    <div class="rail__dot"></div>
-    <div class="rail__read" id="alt">0 km</div>
-  </div>
-</aside>
 
 <main id="main">
 
-  <div class="hero" id="top">
-    <div class="hero__sky" aria-hidden="true">
-      <svg viewBox="0 0 1400 470" xmlns="http://www.w3.org/2000/svg">
-        <path class="grid-line" d="M0 400.5H1400" opacity=".7"/>
-        <path class="grid-line" d="M0 300.5H1400" opacity=".45"/>
-        <path class="grid-line" d="M0 200.5H1400" opacity=".28"/>
-        <path class="grid-line" d="M0 100.5H1400" opacity=".16"/>
-        <circle class="twinkle" cx="1180" cy="96" r="1.4"/><circle class="twinkle" cx="1042" cy="52" r="1.7"/>
-        <circle class="twinkle" cx="960" cy="140" r="1.2"/><circle class="twinkle" cx="820" cy="70" r="1.5"/>
-        <circle class="twinkle" cx="700" cy="150" r="1.2"/><circle class="twinkle" cx="560" cy="96" r="1.4"/>
-        <circle class="twinkle" cx="1320" cy="180" r="1.2"/><circle class="twinkle" cx="420" cy="180" r="1.2"/>
-        <path class="arc" d="M120 452 C 420 452, 700 360, 880 220 C 1000 124, 1120 62, 1290 30"/>
-        <g class="craft">
-          <path d="M-9 0 L6 -4 L6 4 Z" fill="var(--accent-bright)"/>
-          <circle cx="8" cy="0" r="2.6" fill="var(--accent-bright)"/>
-        </g>
-      </svg>
-    </div>
+  <section class="home-hero stars" aria-labelledby="hero-title">
+    <div class="container grid12">
+      <div class="home-hero__text">
+        <p class="statusline rise"><span class="pulse-dot pulse" aria-hidden="true"></span><span>Delhi, India · Mechanical Engineering at IPEC</span></p>
+        <h1 class="rise d1" id="hero-title">Hi, I'm Aaditya. I <span class="sig sig--400 c-ember">take things apart</span> to see how they work.</h1>
+        <p class="home-hero__intro lede rise d2">Builder, engineering student and weekly writer. It started with toy cars and a briefcase of tools. These days it's rocket engines, simulators, data, and the odd food ranking.</p>
+        <div class="hero-actions rise d3">
+          <a class="btn" href="about.html">Get to know me <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn-ghost" href="blog/index.html">Read the blog</a>
+        </div>
+      </div>
 
-    <h1><span class="line"><span>Aaditya</span></span><span class="line"><span>Goswami</span></span></h1>
-    <p class="hero__lede">I build reusable rockets, and the software that flies them.</p>
-    <div class="hero__meta">
-      <span>Delhi, India</span>
-      <span>Founder &amp; CEO, SkyLakes Aerospace</span>
-      <span>Mechanical Engineering, IPEC</span>
+      <div class="moon rise d2">
+        <svg viewBox="0 0 520 560" fill="none" aria-hidden="true">
+          <defs><radialGradient id="moonfill" cx="38%" cy="35%" r="70%"><stop offset="0" style="stop-color: var(--paper)"/><stop offset="1" style="stop-color: var(--stone)"/></radialGradient></defs>
+          <circle cx="260" cy="280" r="250" stroke-dasharray="2 8" style="stroke: var(--line)"/>
+          <circle cx="260" cy="280" r="180" style="stroke: var(--copper)"/>
+          <circle cx="260" cy="280" r="118" stroke-dasharray="4 6" style="stroke: var(--line)"/>
+          <circle cx="260" cy="280" r="72" fill="url(#moonfill)"/>
+          <g style="fill: var(--stone)" opacity="0.7"><circle cx="236" cy="258" r="12"/><circle cx="284" cy="300" r="8"/><circle cx="266" cy="244" r="5"/><circle cx="240" cy="310" r="6"/></g>
+          <g class="orbit" style="transform-origin: 260px 280px"><circle cx="510" cy="280" r="7" style="fill: var(--ember)"/></g>
+          <g class="orbit2" style="transform-origin: 260px 280px"><circle cx="80" cy="280" r="6" style="fill: var(--paper)"/></g>
+          <g class="orbit3" style="transform-origin: 260px 280px"><circle cx="260" cy="162" r="5" style="fill: var(--copper)"/></g>
+        </svg>
+        <ul class="moon__chips" aria-label="Things I'm into">
+          <li class="moon__chip moon__chip--ember" style="--x: 63.5%; --y: 10.7%; --r: 6deg">Rocket engines</li>
+          <li class="moon__chip moon__chip--line" style="--x: 0%; --y: 26.8%; --r: -5deg">Code &amp; simulators</li>
+          <li class="moon__chip moon__chip--copper" style="--x: 67.3%; --y: 58.9%; --r: -4deg">Data science</li>
+          <li class="moon__chip moon__chip--surface" style="--x: 5.8%; --y: 75%; --r: 5deg">Vada pav rankings</li>
+          <li class="moon__chip moon__chip--line" style="--x: 42.3%; --y: 89.3%; --r: -2deg">Writing weekly</li>
+        </ul>
+      </div>
     </div>
-    <div class="links">
-      <a class="btn btn--primary" href="https://skylakes.space" target="_blank" rel="noopener noreferrer">SkyLakes Aerospace</a>
-      <a class="btn" href="https://www.linkedin.com/in/aaditya-goswami-908a98303" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a class="btn" href="https://github.com/Aadii02" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a class="btn" href="https://aadityagoswami.substack.com" target="_blank" rel="noopener noreferrer">Substack</a>
-    </div>
+  </section>
 
-    <div class="now">
-      <span class="pulse" aria-hidden="true"></span>
-      <p>Right now: qualifying the <b>LX-1</b> ethanol/LOX engine, rebuilding our ground control station, and writing weekly about Indian deep tech.</p>
+  <div class="ticker-band">
+    <div class="ticker">
+      <p class="sr-only">Currently: qualifying a rocket engine, rebuilding ground control software, writing every week, and putting sensors on a CanSat.</p>
+      <div class="ticker__track" aria-hidden="true">
+        <span>Currently: qualifying a rocket engine</span><span>/</span><span>Rebuilding ground control software</span><span>/</span><span>Writing every week</span><span>/</span><span>Sensors on a CanSat</span><span>/</span>
+        <span>Currently: qualifying a rocket engine</span><span>/</span><span>Rebuilding ground control software</span><span>/</span><span>Writing every week</span><span>/</span><span>Sensors on a CanSat</span><span>/</span>
+        <span>Currently: qualifying a rocket engine</span><span>/</span><span>Rebuilding ground control software</span><span>/</span><span>Writing every week</span><span>/</span><span>Sensors on a CanSat</span><span>/</span>
+        <span>Currently: qualifying a rocket engine</span><span>/</span><span>Rebuilding ground control software</span><span>/</span><span>Writing every week</span><span>/</span><span>Sensors on a CanSat</span><span>/</span>
+      </div>
     </div>
   </div>
 
-  <section id="featured" class="feature">
-    <h2 class="reveal">Featured <em>LX-1 thrust chamber</em></h2>
-    <div class="engine-wrap reveal" role="img" aria-label="Schematic of the LX-1 regeneratively cooled thrust chamber. Ethanol flows through channels in the chamber wall from the nozzle exit back to the injector, where it meets liquid oxygen. Hot combustion gas flows out through the throat and nozzle.">
-      <svg viewBox="0 0 780 310" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="plumeGrad" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stop-color="var(--hot)" stop-opacity=".42"/>
-            <stop offset="1" stop-color="var(--hot)" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-
-        <!-- exhaust plume -->
-        <path class="eng-plume" d="M620 45 C 680 40, 740 70, 780 100 L780 210 C 740 240, 680 270, 620 265 Z" fill="url(#plumeGrad)"/>
-
-        <!-- cooling channel band (upper + lower) -->
-        <path class="eng-channel" d="M82 84 L300 84 C342 84 351 118 380 118 C429 118 519 64 620 39"/>
-        <path class="eng-channel" d="M82 226 L300 226 C342 226 351 192 380 192 C429 192 519 246 620 271"/>
-
-        <!-- outer jacket -->
-        <path class="eng-jacket" d="M80 78 L300 78 C344 78 352 112 380 112 C428 112 518 58 620 33"/>
-        <path class="eng-jacket" d="M80 232 L300 232 C344 232 352 198 380 198 C428 198 518 252 620 277"/>
-
-        <!-- hot-gas wall -->
-        <path class="eng-wall" d="M80 90 L300 90 C340 90 350 124 380 124 C430 124 520 70 620 45"/>
-        <path class="eng-wall" d="M80 220 L300 220 C340 220 350 186 380 186 C430 186 520 240 620 265"/>
-
-        <!-- coolant flow: exit manifold back toward injector -->
-        <path class="eng-coolant" d="M82 84 L300 84 C342 84 351 118 380 118 C429 118 519 64 620 39"/>
-        <path class="eng-coolant" d="M82 226 L300 226 C342 226 351 192 380 192 C429 192 519 246 620 271"/>
-
-        <!-- hot gas streamlines -->
-        <path class="eng-gas" d="M92 155 L760 155"/>
-        <path class="eng-gas" d="M92 122 L300 122 C338 122 352 140 380 140 C430 140 520 112 740 86"/>
-        <path class="eng-gas" d="M92 188 L300 188 C338 188 352 170 380 170 C430 170 520 198 740 224"/>
-
-        <!-- injector + feeds -->
-        <rect class="eng-injector" x="60" y="84" width="20" height="142" rx="3"/>
-        <path class="eng-feed eng-feed--lox" d="M14 155 L60 155"/>
-        <path class="eng-feed eng-feed--eth" d="M620 39 L620 12 L700 12"/>
-
-        <!-- callouts -->
-        <g class="eng-note">
-          <text x="14" y="146">LOX</text>
-          <circle cx="70" cy="84" r="2.5"/>
-          <line x1="70" y1="84" x2="70" y2="24"/>
-          <text x="76" y="28" class="hl">Injector</text>
-          <text x="76" y="42">ethanol + LOX meet here</text>
-
-          <circle cx="190" cy="155" r="2.5"/>
-          <line x1="190" y1="155" x2="190" y2="292"/>
-          <text x="196" y="296" class="hl">Combustion chamber</text>
-
-          <circle cx="380" cy="124" r="2.5"/>
-          <line x1="380" y1="124" x2="380" y2="24"/>
-          <text x="386" y="28" class="hl">Throat</text>
-          <text x="386" y="42">hottest point on the wall</text>
-
-          <circle cx="470" cy="221" r="2.5"/>
-          <line x1="470" y1="221" x2="470" y2="296"/>
-          <text x="476" y="292" class="hl">Regen channels</text>
-          <text x="476" y="306">ethanol cools the wall first</text>
-
-          <circle cx="620" cy="39" r="2.5"/>
-          <text x="632" y="30" class="hl">Coolant inlet</text>
-          <text x="706" y="16">ethanol</text>
-        </g>
-      </svg>
-      <div class="engine-key" aria-hidden="true">
-        <span><i style="background:var(--accent-bright)"></i>ethanol coolant</span>
-        <span><i style="background:var(--hot)"></i>combustion gas</span>
-        <span>schematic, not to scale</span>
+  <section class="about-teaser section" id="about" aria-labelledby="about-title" style="padding-top: clamp(96px, 11.1vw, 160px)">
+    <div class="container grid12">
+      <div class="about-teaser__side">
+        <h2 class="eyebrow" id="about-title">01 — A bit about me</h2>
+        <div class="photo-round"><span class="ph-label">[YOUR PHOTO]</span></div>
+      </div>
+      <div class="about-teaser__main">
+        <p class="statement">My family called me <span class="sig sig--400 c-copper">"kabadi wala"</span>. I was the kid who carried a briefcase of tools everywhere and couldn't leave a toy car in one piece.</p>
+        <p class="lede">Not much has changed. I still learn by building first. My practical knowledge runs ahead of my theory, and I'm fine with that, because the theory has a way of catching up once something's on the bench.</p>
+        <a class="link-arrow link-arrow--ember" href="about.html">The longer version <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
-    <div class="feature__body">
-      <p class="reveal"><strong>LX-1</strong> is our ethanol/LOX liquid engine and the core of the SKYLX propulsion program. The fuel does two jobs: before it's injected, ethanol runs through channels in the chamber wall, pulling heat out of the throat on its way to the injector.</p>
-      <p class="reveal">Metal-printed chambers are expensive to get wrong, so before committing to an <strong>IN718</strong> print I printed the chamber in PLA-CF and pushed water through it to validate the cooling channel geometry. Cheap test first, expensive hardware once.</p>
-      <div class="tags reveal"><span class="tag">Ethanol / LOX</span><span class="tag">Regenerative cooling</span><span class="tag">PLA-CF flow test</span><span class="tag">IN718 next</span></div>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="things-title">
+    <div class="container things">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">02 — Things I make</p>
+          <h2 class="h2" id="things-title">Engines, apps, models, <span class="sig sig--400 c-stone">whatever's next</span>.</h2>
+        </div>
+        <a class="link-arrow" href="projects.html">All projects <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="bento">
+        <article class="card bento__lx1">
+          <div>
+            <p class="card__top"><span>Propulsion</span><span class="dotlabel st-active">Active</span></p>
+            <h3>LX-1 engine</h3>
+            <p>An ethanol/LOX engine with regenerative cooling. Printed in PLA-CF, water-flow tested, then on to IN718 metal.</p>
+          </div>
+          <svg viewBox="0 0 560 300" fill="none" role="img" aria-label="Schematic of the LX-1 engine: injector plate on the left, the chamber narrowing to a throat, then the nozzle opening out to an exhaust plume on the right.">
+            <rect x="40" y="96" width="6" height="108" style="fill: var(--copper)"/>
+            <path d="M46 90 L210 90 Q240 90 262 132 Q350 78 500 40" stroke-width="3" stroke-linecap="round" style="stroke: var(--paper)"/>
+            <path d="M46 210 L210 210 Q240 210 262 168 Q350 222 500 260" stroke-width="3" stroke-linecap="round" style="stroke: var(--paper)"/>
+            <path d="M46 100 L208 100 Q234 100 254 136 Q346 88 496 52" stroke-width="2" stroke-dasharray="4 5" style="stroke: var(--ember)"/>
+            <path d="M46 200 L208 200 Q234 200 254 164 Q346 212 496 248" stroke-width="2" stroke-dasharray="4 5" style="stroke: var(--ember)"/>
+            <g class="flame"><path d="M505 70 L556 110 L520 150 L556 190 L505 230" stroke-width="2" opacity="0.7" style="stroke: var(--ember)"/><path d="M505 100 L540 150 L505 200" stroke-width="2" style="stroke: var(--copper)"/></g>
+          </svg>
+        </article>
+        <a class="card bento__link" href="https://skylakes.space/tools/propulsionlab.html" target="_blank" rel="noopener noreferrer">
+          <p class="card__top"><span>Software</span><span class="dotlabel st-live">Live</span></p>
+          <h3>PropulsionLab</h3>
+          <p>A rocket engine simulator you can play with in the browser.</p>
+        </a>
+        <article class="card">
+          <p class="card__top"><span>Machine learning</span><span class="dotlabel st-done">Done</span></p>
+          <h3>Engine failure prediction</h3>
+          <p>Remaining useful life on NASA's C-MAPSS turbofan data.</p>
+        </article>
+        <article class="card bento__solid">
+          <p class="card__top"><span>Personal</span><span class="dotlabel">In progress</span></p>
+          <h3>What I Ate</h3>
+          <p>A food-photo calendar, moving from web to a native Android app.</p>
+        </article>
+        <article class="card">
+          <p class="card__top"><span>Hardware</span><span class="dotlabel st-progress">In progress</span></p>
+          <h3>CanSat</h3>
+          <p>A can-sized satellite packed with sensors to predict weather on the way down.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section id="about" class="prose">
-    <h2 class="reveal">About <a class="see-all" href="about.html">See all →</a></h2>
-    <p class="reveal">I founded <strong>SkyLakes Aerospace</strong> and study mechanical engineering at IPEC in Delhi. We're building SKYLX, a family of reusable small-lift launch vehicles for the sub-₹40 Cr LEO market. The company is incorporated and registered with IN-SPACe.</p>
-  </section>
-
-  <section id="projects">
-    <h2 class="reveal">Projects <a class="see-all" href="projects.html">See all →</a></h2>
-    <ul>
-      <li class="row reveal" data-cat="propulsion">
-        <div class="row__when">Propulsion</div>
-        <div>
-          <div class="row__head"><h3>LX-1 engine</h3><span class="status status--active">Active</span></div>
-          <p>Ethanol/LOX liquid engine with regenerative cooling, our primary propulsion program. I ran a PLA-CF nozzle water flow test to validate cooling channel geometry before committing to an IN718 metal print.</p>
-          <div class="tags"><span class="tag">Regenerative cooling</span><span class="tag">Ethanol/LOX</span><span class="tag">Static fire</span><span class="tag">IN718</span></div>
+  <section class="section" id="blog" aria-labelledby="blog-title" style="padding-top: clamp(72px, 8.4vw, 120px)">
+    <div class="container things">
+      <div class="section-head">
+        <div class="section-head__text">
+          <p class="eyebrow">03 — From the blog</p>
+          <h2 class="h2" id="blog-title">Rockets, habits, and <span class="sig sig--400 c-copper">vada pav</span>.</h2>
         </div>
-      </li>
-
-      <li class="row reveal" data-cat="software">
-        <div class="row__when">Software</div>
-        <div>
-          <div class="row__head"><h3>PropulsionLab</h3><span class="status status--live">Live</span></div>
-          <p>Interactive rocket engine simulator. Toggle between six liquid engine cycles and two solid grain geometries, with animated cross-sections and performance plots on real physics.</p>
-          <div class="tags"><span class="tag">React</span><span class="tag">Simulation</span><span class="tag">Propulsion</span></div>
-          <div class="row__links"><a href="https://skylakes.space/tools" target="_blank" rel="noopener noreferrer">Try it</a></div>
-        </div>
-      </li>
-
-      <li class="row reveal" data-cat="ml">
-        <div class="row__when">ML</div>
-        <div>
-          <div class="row__head"><h3>Engine failure prediction</h3><span class="status status--done">Done</span></div>
-          <p>Remaining useful life prediction on NASA's C-MAPSS turbofan dataset. Sensor degradation histories go in, cycles-to-failure come out, which is the same question we'll eventually ask of our own engine test data.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">C-MAPSS</span><span class="tag">RUL</span><span class="tag">Time series</span></div>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section id="blog">
-    <h2 class="reveal">Blog <a class="see-all" href="blog/index.html">See all →</a></h2>
-    <div class="posts">
-      <a class="post reveal" href="https://aadityagoswami.substack.com/p/why-were-building-a-community-before" target="_blank" rel="noopener noreferrer">
-        <div class="post__when">Strategy</div>
-        <div>
-          <h3>Why We're Building a Community Before We Build a Rocket</h3>
-          <p>Free tools, model rocket kits, and a Discord server aren't a distraction from the rocket company. They're step one of it.</p>
-          <div class="tags"><span class="tag">Community</span><span class="tag">Startups</span></div>
-        </div>
-      </a>
-      <a class="post reveal" href="https://aadityagoswami.substack.com/p/reusability-what-it-actually-means" target="_blank" rel="noopener noreferrer">
-        <div class="post__when">Aerospace</div>
-        <div>
-          <h3>Reusability: What It Actually Means, and Why India Should Care</h3>
-          <p>What reuse actually does to the cost of getting a kilogram to orbit, and why it matters for India.</p>
-          <div class="tags"><span class="tag">Launch</span><span class="tag">Economics</span></div>
-        </div>
-      </a>
+        <a class="link-arrow" href="blog/index.html">Open the blog <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="post-row">
+        <!-- gen:home-blog -->
+        <a class="card post-card post-card--compact" href="blog/posts/best-vada-pav-spots-in-mumbai.html" data-nb="food">
+          <span class="post-card__band" aria-hidden="true"></span>
+          <div class="post-card__body">
+            <p class="post-card__kicker">Food &amp; Places · 21 Sep</p>
+            <h3 class="post-card__title">Best Vada Pav Spots in Mumbai</h3>
+            <p class="post-card__excerpt">Six stalls, two days, one very full stomach. Ranked by the chutney, the pav, and whether the queue was worth it.</p>
+            <p class="post-card__meta">1 min read</p>
+          </div>
+        </a>
+        <a class="card post-card post-card--compact" href="blog/posts/on-doing-less-better.html" data-nb="mind">
+          <span class="post-card__band" aria-hidden="true"></span>
+          <div class="post-card__body">
+            <p class="post-card__kicker">Mind &amp; Meaning · 17 Sep</p>
+            <h3 class="post-card__title">On Doing Less, Better</h3>
+            <p class="post-card__excerpt">I cut my to-do list in half for a month. The work that survived was the work that mattered.</p>
+            <p class="post-card__meta">1 min read</p>
+          </div>
+        </a>
+        <a class="card post-card post-card--compact" href="blog/posts/water-flow-test-before-metal-print.html" data-nb="tech">
+          <span class="post-card__band" aria-hidden="true"></span>
+          <div class="post-card__body">
+            <p class="post-card__kicker">Tech · 14 Sep</p>
+            <h3 class="post-card__title">What a Water Flow Test Taught Me Before a Metal Print</h3>
+            <p class="post-card__excerpt">Before sending an injector off to be printed in metal, I ran water through a resin copy. The numbers disagreed with the CAD, and that disagreement saved a print.</p>
+            <p class="post-card__meta">2 min read</p>
+          </div>
+        </a>
+        <!-- /gen:home-blog -->
+      </div>
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <h2 class="reveal">Contact</h2>
-    <p class="reveal">Building something in space, hardware or deep tech in India? Email is fastest, and I answer every one.</p>
-    <div class="links reveal">
-      <a class="btn btn--primary" href="mailto:aaditya@skylakes.space">aaditya@skylakes.space</a>
-      <button class="btn" type="button" data-copy="aaditya@skylakes.space">Copy email</button>
-      <a class="btn" href="https://www.linkedin.com/in/aaditya-goswami-908a98303" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a class="btn" href="https://x.com/aadiii_g02" target="_blank" rel="noopener noreferrer">X</a>
-      <a class="btn" href="https://instagram.com/aadiii_g02" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a class="btn" href="https://github.com/Aadii02" target="_blank" rel="noopener noreferrer">GitHub</a>
-    </div>
-  </section>
+  <div class="container">
+    <section class="cta-box stars" id="contact" aria-labelledby="hello-title">
+      <p class="eyebrow">04 — Say hello</p>
+      <h2 id="hello-title">Want to build something together, or just talk rockets?</h2>
+      <a class="email-link" href="mailto:aaditya@skylakes.space">aaditya@skylakes.space <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      <p class="cta-box__note">Email is fastest, and I answer every one.</p>
+    </section>
+  </div>
 
 </main>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<footer>
-  <span>© 2026 Aaditya Goswami</span>
-  <span>Built in Delhi · <a href="https://skylakes.space" target="_blank" rel="noopener noreferrer">skylakes.space</a></span>
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p class="site-footer__copy">© 2026 Aaditya Goswami · Delhi, India</p>
+    <nav class="social" aria-label="Social">
+      <a href="https://www.linkedin.com/in/aaditya-goswami-908a98303" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://x.com/aadiii_g02" target="_blank" rel="noopener noreferrer">X</a>
+      <a href="https://instagram.com/aadiii_g02" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://github.com/Aadii02" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+  </div>
 </footer>
 </body>
 </html>

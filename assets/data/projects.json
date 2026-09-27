@@ -1,0 +1,199 @@
+{
+  "_note": "Display order = array order. Rendered into projects.html by blog/tools/build.mjs. linkTodo marks a link the design shows but that has no public URL yet.",
+  "projects": [
+    {
+      "id": "lx-1-engine",
+      "name": "LX-1 engine",
+      "category": "Propulsion",
+      "status": "Active",
+      "statusClass": "active",
+      "description": "Ethanol/LOX liquid engine with regenerative cooling, our primary propulsion program.",
+      "tags": [
+        "Regenerative cooling",
+        "Ethanol/LOX",
+        "Static fire",
+        "IN718"
+      ],
+      "link": null
+    },
+    {
+      "id": "propulsionlab",
+      "name": "PropulsionLab",
+      "category": "Software",
+      "status": "Live",
+      "statusClass": "live",
+      "description": "Interactive rocket engine simulator with six liquid cycles and two solid geometries.",
+      "tags": [
+        "React",
+        "Simulation",
+        "Propulsion"
+      ],
+      "link": "https://skylakes.space/tools/propulsionlab.html",
+      "linkLabel": "skylakes.space/tools"
+    },
+    {
+      "id": "what-i-ate",
+      "name": "What I Ate",
+      "category": "Personal",
+      "status": "In progress",
+      "statusClass": "progress",
+      "description": "Food-photo calendar app, moving from web to native Android.",
+      "tags": [
+        "Android",
+        "Web"
+      ],
+      "link": null
+    },
+    {
+      "id": "engine-failure-prediction",
+      "name": "Engine failure prediction",
+      "category": "Machine Learning",
+      "status": "Done",
+      "statusClass": "done",
+      "description": "Remaining useful life prediction on NASA's C-MAPSS turbofan dataset.",
+      "tags": [
+        "Python",
+        "C-MAPSS",
+        "RUL",
+        "Time series"
+      ],
+      "link": "https://github.com/Aadii02/Engine-failure-prediction",
+      "linkLabel": "GitHub"
+    },
+    {
+      "id": "cansat",
+      "name": "CanSat",
+      "category": "Hardware",
+      "status": "In progress",
+      "statusClass": "progress",
+      "description": "Carries multiple sensors aimed at weather prediction during descent.",
+      "tags": [
+        "Sensors",
+        "GPS",
+        "Embedded"
+      ],
+      "link": null
+    },
+    {
+      "id": "launch-analysis",
+      "name": "Launch-analysis",
+      "category": "Machine Learning",
+      "status": "Done",
+      "statusClass": "done",
+      "description": "Global rocket launch data: cadence, vehicle families and success rates.",
+      "tags": [
+        "Python",
+        "pandas",
+        "uv",
+        "Data analysis"
+      ],
+      "link": "https://github.com/Aadii02/Launch-analysis",
+      "linkLabel": "GitHub"
+    },
+    {
+      "id": "simcore",
+      "name": "SimCore",
+      "category": "Software",
+      "status": "Active",
+      "statusClass": "active",
+      "description": "Flight simulation platform designed to replace MATLAB and Simulink.",
+      "tags": [
+        "Python",
+        "Tauri",
+        "React"
+      ],
+      "link": null
+    },
+    {
+      "id": "knso-review",
+      "name": "KNSO propellant review paper",
+      "category": "Research",
+      "status": "Submitted",
+      "statusClass": "done",
+      "description": "A review of potassium nitrate–sorbitol propellant, co-authored with Ayush Seth and submitted to the IPEC journal.",
+      "tags": [
+        "Solid propellant",
+        "KNSO",
+        "Characterization",
+        "Co-authored"
+      ],
+      "link": null
+    },
+    {
+      "id": "mission-control",
+      "name": "Mission Control",
+      "category": "Software",
+      "status": "In rebuild",
+      "statusClass": "progress",
+      "description": "Ground control station using COBS, MessagePack and CRC-16 telemetry framing.",
+      "tags": [
+        "Python",
+        "DearPyGui",
+        "Telemetry"
+      ],
+      "link": null,
+      "linkTodo": "Code link: the old repo github.com/Aadii02/Skylakes_Flight_Panal returns 404"
+    },
+    {
+      "id": "pla-annealing-review",
+      "name": "PLA thermal annealing review paper",
+      "category": "Research",
+      "status": "In progress",
+      "statusClass": "progress",
+      "description": "How controlled heat treatment affects crystallization and heat resistance in FDM-printed parts, without warping.",
+      "tags": [
+        "FDM",
+        "PLA",
+        "Annealing",
+        "Review paper"
+      ],
+      "link": null
+    },
+    {
+      "id": "skylx-avionics",
+      "name": "SKYLX avionics",
+      "category": "Avionics",
+      "status": "Active",
+      "statusClass": "active",
+      "description": "Dual flight computer architecture: an STM32F411 as the safety-critical primary and a Raspberry Pi Zero 2W as companion.",
+      "tags": [
+        "STM32",
+        "Raspberry Pi",
+        "LoRa",
+        "Embedded"
+      ],
+      "link": null
+    },
+    {
+      "id": "web-tools",
+      "name": "Web tools suite",
+      "category": "Software",
+      "status": "In progress",
+      "statusClass": "progress",
+      "description": "Interactive aerospace tools: PropulsionLab (live) plus TrajectoryLab, StructuresLab and ThermalLab.",
+      "tags": [
+        "React",
+        "Trajectory",
+        "Structures",
+        "Thermal"
+      ],
+      "link": "https://skylakes.space/tools",
+      "linkLabel": "skylakes.space/tools"
+    },
+    {
+      "id": "skylakes-space",
+      "name": "skylakes.space",
+      "category": "Web",
+      "status": "Live",
+      "statusClass": "live",
+      "description": "Company site with SEO, prerendering, sitemap, founder profiles and roadmap.",
+      "tags": [
+        "React",
+        "Vite",
+        "GitHub Pages"
+      ],
+      "link": "https://skylakes.space",
+      "linkLabel": "skylakes.space"
+    }
+  ]
+}

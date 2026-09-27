@@ -1,10 +1,9 @@
-/* Blog behaviour. The portfolio's assets/js/main.js already runs on every blog page and handles the
-   theme toggle, reveals, section rules, scroll progress, altitude rail, nav pill, card glow and toast.
-   This file adds what only the blog needs: search, category filters, code copy and the table of contents. */
+/* Blog behaviour on the post, notebook and "About this blog" pages. assets/js/site.js already handles the theme
+   toggle, menu and grid layout; this file adds the search dialog, notebook filters, code copy and the table of contents.
+   (The blog index has its own inline search, in site.js.) */
 (function () {
   var body = document.body;
   var root = body.getAttribute('data-root') || '';   /* path from this page back to /blog/ */
-  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---- toast (reuses the portfolio's #toast element) ---- */
   var toastEl = document.getElementById('toast'), toastTimer;
@@ -47,8 +46,8 @@
     });
     if (sel >= hits.length) sel = Math.max(0, hits.length - 1);
     sList.innerHTML = hits.map(function (p, i) {
-      return '<a class="res c-' + p.cat + '" id="sr-' + i + '" role="option" aria-selected="' + (i === sel) + '" href="' + esc(root + p.url) + '">' +
-        '<span class="res__s"><span class="clab"><i></i>' + esc(p.catLabel + ' · ' + p.sub) + '</span><span class="res__t">' + esc(p.title) + '</span></span>' +
+      return '<a class="res" data-nb="' + p.cat + '" id="sr-' + i + '" role="option" aria-selected="' + (i === sel) + '" href="' + esc(root + p.url) + '">' +
+        '<span class="res__s"><span class="clab"><i aria-hidden="true"></i>' + esc(p.catLabel + ' · ' + p.sub) + '</span><span class="res__t">' + esc(p.title) + '</span></span>' +
         '<span class="res__m mono">' + esc(p.dateShort + ' · ' + p.read) + '</span></a>';
     }).join('');
     sEmpty.hidden = hits.length > 0;
@@ -129,41 +128,28 @@
   var grid = document.getElementById('post-grid');
   if (grid) {
     var fChips = Array.prototype.slice.call(document.querySelectorAll('.bfilters .chip'));
-    var cards = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-item]'));
     var pEmpty = document.getElementById('grid-empty');
-    var current = null, busy = false;
+    var current = null;
     function valid(sub) { return fChips.some(function (c) { return c.getAttribute('data-sub') === sub; }); }
-    function show(sub, animate) {
+    function show(sub) {
       if (sub === current) return;
       current = sub;
       fChips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-sub') === sub)); });
-      function swap() {
-        var n = 0;
-        cards.forEach(function (card) {
-          var on = sub === 'all' || card.getAttribute('data-sub') === sub;
-          card.hidden = !on;
-          card.classList.remove('is-lead', 'stagger');
-          if (on) {
-            if (n === 0) card.classList.add('is-lead');
-            if (animate) { card.style.animationDelay = (n * 70) + 'ms'; void card.offsetWidth; card.classList.add('stagger'); }
-            /* filtered-in cards are already on screen, so don't wait for the scroll reveal */
-            card.classList.add('in-view');
-            n++;
-          }
-        });
-        if (pEmpty) pEmpty.hidden = n > 0;
-        grid.classList.remove('leaving');
-        busy = false;
-      }
-      if (animate && !calm) { busy = true; grid.classList.add('leaving'); setTimeout(swap, 200); }
-      else swap();
+      var n = 0;
+      cards.forEach(function (card) {
+        var on = sub === 'all' || card.getAttribute('data-sub') === sub;
+        card.hidden = !on;
+        if (on) n++;
+      });
+      if (pEmpty) pEmpty.hidden = n > 0;
+      if (window.AG) window.AG.fillRows(grid);
     }
     fChips.forEach(function (c) {
       c.addEventListener('click', function () {
-        if (busy) return;
         var sub = c.getAttribute('data-sub');
         history.replaceState(null, '', sub === 'all' ? location.pathname + location.search : '#' + sub);
-        show(sub, true);
+        show(sub);
       });
     });
     function fromHash(animate) {
