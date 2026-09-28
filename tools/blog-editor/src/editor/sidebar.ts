@@ -91,6 +91,14 @@ export class SettingsSidebar {
         </div>
         <p class="field__hint field__hint--status" aria-live="polite"></p>
 
+        <div class="field">
+          <label class="toggle" for="set-featured">
+            <span class="toggle__label">Feature on blog front page</span>
+            <input id="set-featured" class="toggle__input" type="checkbox" role="switch" aria-describedby="set-featured-hint">
+          </label>
+          <span class="field__hint" id="set-featured-hint">Lists it under “Top posts” on /blog. The newest three featured posts are shown.</span>
+        </div>
+
         <div class="sidebar__foot">
           <button type="button" class="btn btn--outline btn--lg btn--block" data-act="export">${icon('download')}Export Markdown</button>
           <p class="sidebar__note">Drafts stay private. Publish to list it on /blog.</p>
@@ -194,6 +202,11 @@ export class SettingsSidebar {
       this.changed();
     });
 
+    $<HTMLInputElement>('#set-featured', r).addEventListener('change', e => {
+      meta.featured = (e.target as HTMLInputElement).checked;
+      this.changed();
+    });
+
     $<HTMLInputElement>('#set-date', r).addEventListener('change', e => {
       const v = (e.target as HTMLInputElement).value;
       if (/^\d{4}-\d{2}-\d{2}$/.test(v)) { meta.date = v; this.changed(); }
@@ -253,6 +266,7 @@ export class SettingsSidebar {
     $('#set-sub-hint', r).textContent = cat ? `Where it’s filed inside ${cat.label} on /blog.` : '';
 
     $<HTMLInputElement>('#set-date', r).value = m.date;
+    $<HTMLInputElement>('#set-featured', r).checked = !!m.featured;
     r.querySelectorAll<HTMLButtonElement>('[data-draft]').forEach(b => b.setAttribute('aria-pressed', String(String(m.draft) === b.dataset.draft)));
     const statusHint = $('.field__hint--status', r);
     statusHint.textContent = !m.draft && m.date > new Date().toISOString().slice(0, 10) ? `Scheduled: it goes live on /blog after ${m.date}, the next time the site is built.` : '';

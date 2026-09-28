@@ -114,6 +114,19 @@ describe('frontmatter', () => {
       '---\ntitle: "Chai: a love story"\nslug: chai-a-love-story\ncategory: food-and-places\ntags: [chai, delhi]\ndate: 2026-10-01\nexcerpt: "Say \\"yes\\"."\ndraft: true\n---\n');
   });
 
+  it('writes featured: true only when the post is featured, and reads it back', () => {
+    const m = meta();
+    expect(frontmatterData(m, null)).not.toHaveProperty('featured');
+    m.featured = true;
+    const text = serializeFrontmatter(frontmatterData(m, null));
+    expect(text).toMatch(/\ndraft: true\nfeatured: true\n---\n$/);
+    expect(validateFrontmatter(frontmatterData(m, null))).toEqual([]);
+    const { data } = parseFrontmatter(text + '\nBody');
+    expect(data.featured).toBe(true);
+    expect(metaFromFrontmatter(data).featured).toBe(true);
+    expect(metaFromFrontmatter({ ...data, featured: undefined }).featured).toBe(false);
+  });
+
   it('reports schema problems', () => {
     const m = meta();
     Object.assign(m, { slug: 'Bad Slug', category: null, excerpt: 'x'.repeat(161) });

@@ -319,6 +319,8 @@ export function renderPostPage(data, body, { resolveSrc, coverSrc, preview = fal
     tags: tags.map(tagLabel), headTags: tags.slice(0, 2).map(tagLabel),
     keywords: [...tags.map(t => t.replace(/-/g, ' ')), ...slug.split('-').filter(w => w.length > 3)].join(' '),
     source: `${slug}.md`,
+    // "featured: true" in the frontmatter puts the post under "Top posts" on the blog front page
+    ...(data.featured === true ? { featured: true } : {}),
   };
 
   const body_ = nb === 'tech' && headings.length

@@ -116,25 +116,23 @@ const postCard = (p, prefix) => `<a class="card post-card" href="${prefix}posts/
         </div>
       </a>`;
 
-// ---------- blog index ----------
+// ---------- blog front page (blog/index.html) ----------
 {
-  // with no posts yet, the featured card is left out and the grid shows a short note instead
   const latest = posts[0];
-  const f = (latest && latest.feature) || {};
-  const stats = latest ? f.stats || [[String(latest.minutes), 'min read']] : [];
-  const fTags = latest ? f.tags || (latest.tags || []).slice(0, 3) : [];
-  const featured = !latest ? '' : `<a class="featured tilt" href="posts/${latest.slug}.html" data-nb="${latest.cat}">
-      <div class="featured__main">
-        <p class="featured__kicker"><span class="featured__badge">Latest post</span><span>${esc(latest.catLabel)} · <time datetime="${latest.date}">${longDate(latest.date)}</time> · ${latest.read}</span></p>
-        <h2 class="featured__title">${esc(latest.title)}</h2>
-        <p class="featured__excerpt">${esc(latest.excerpt)}</p>
-        <span class="featured__cta">${esc(f.cta || 'Read the post')} ${ARROW}</span>
+
+  // Top posts: up to 3 posts marked featured, newest first; otherwise the newest post from each notebook
+  const picked = posts.filter(p => p.featured === true).slice(0, 3);
+  const top = picked.length ? picked : Object.keys(CATS).map(c => byCat(c)[0]).filter(Boolean).sort((a, b) => b.date.localeCompare(a.date));
+  const topPosts = top.length
+    ? `<div class="section-head__text">
+        <p class="eyebrow">${picked.length ? 'Hand-picked' : 'Newest from each notebook'}</p>
+        <h2 class="h2" id="top-title">Top posts.</h2>
       </div>
-      <div class="featured__panel" aria-hidden="true">
-        ${stats.map(([n, unit]) => `<p class="featured__stat"><span class="featured__num">${esc(n)}</span><span class="featured__unit">${esc(unit)}</span></p>`).join('\n        ')}
-        <ul class="featured__tags">${fTags.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
-      </div>
-    </a>`;
+      <div class="post-grid" data-fill-rows>
+      ${top.map(p => postCard(p, '')).join('\n      ')}
+      </div>`
+    : `<h2 class="sr-only" id="top-title">Top posts</h2>
+      <p class="empty-state"><strong>First posts are on their way.</strong></p>`;
 
   const tick = [...posts.map(p => `<span data-nb="${p.cat}"><span class="tdot"></span>${esc(p.title)}</span>`),
     ...ARCHIVE.map((a, i) => `<span style="--nb: var(${i % 2 ? '--stone' : '--paper'})"><span class="tdot"></span>${esc(a.title)}</span>`)];
@@ -143,18 +141,15 @@ const postCard = (p, prefix) => `<a class="card post-card" href="${prefix}posts/
   while (half.length < 8) half.push(...tick);
   const ticker = half.concat(half).join('');
 
-  const chip = (id, label, n) => `<button class="chip nb-chip" type="button" data-nb="${id}" data-nb-filter="${id}" aria-pressed="${id === 'all'}"><span class="tdot" aria-hidden="true"></span>${esc(label)} <span class="chip__count"><span class="sr-only">(</span>${n}<span class="sr-only">)</span></span></button>`;
-  const chips = [chip('all', 'All', posts.length), ...Object.keys(CATS).map(c => chip(c, CATS[c].label, byCat(c).length))];
-
+  // notebook cards link to their notebook page, with the real count and the latest title
   const notebooks = Object.entries(CATS).map(([c, cat], i) => {
     const list = byCat(c);
-    return `<button class="nb-card tilt" type="button" data-nb="${c}" data-pick-notebook="${c}" aria-controls="post-grid" aria-labelledby="nb-${c}-do nb-${c}-name">
-        <span class="nb-card__top"><span>Notebook ${String(i + 1).padStart(2, '0')}</span><span>${list.length} in feed</span></span>
-        <span class="nb-card__name" id="nb-${c}-name">${esc(cat.label)}</span>
+    return `<a class="nb-card tilt" href="${c}/index.html" data-nb="${c}">
+        <span class="nb-card__top"><span>Notebook ${String(i + 1).padStart(2, '0')}</span><span>${plural(list.length, 'post')}</span></span>
+        <span class="nb-card__name">${esc(cat.label)}</span>
         <span class="nb-card__blurb">${esc(cat.blurb)}</span>
-        <span class="nb-card__posts">${list.length ? list.map(p => `<span>${esc(p.title)}</span>`).join('') : '<span class="nb-card__none">First post coming soon.</span>'}</span>
-        <span class="sr-only" id="nb-${c}-do">Show posts from</span>
-      </button>`;
+        <span class="nb-card__posts">${list.length ? `<span><span class="nb-card__latest">Latest</span>${esc(list[0].title)}</span>` : '<span class="nb-card__none">First post coming soon.</span>'}</span>
+      </a>`;
   });
 
   const archive = ARCHIVE.map(a => `<li><a class="row" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer"><span class="row__kind">${esc(a.kind)}</span><span class="row__title">${esc(a.title)}<span class="sr-only"> (on Substack, opens in a new tab)</span></span>${ARROW.replace('width="22" height="22"', 'width="36" height="36"')}</a></li>`);
@@ -162,9 +157,7 @@ const postCard = (p, prefix) => `<a class="card post-card" href="${prefix}posts/
   fill('index.html', {
     'latest-line': latest ? `Latest: <time datetime="${latest.date}">${longDate(latest.date)}</time> · ${plural(posts.length, 'post')} in the feed` : 'New posts coming soon',
     ticker,
-    featured,
-    chips: '\n        ' + chips.join('\n        ') + '\n        ',
-    grid: '\n      ' + (posts.length ? posts.map(p => postCard(p, '')).join('\n      ') : '<p class="empty-state"><strong>First posts are on their way.</strong></p>') + '\n      ',
+    top: '\n      ' + topPosts + '\n      ',
     notebooks: '\n      ' + notebooks.join('\n      ') + '\n      ',
     archive: '\n        ' + archive.join('\n        ') + '\n        ',
   });
@@ -178,10 +171,37 @@ for (const c of Object.keys(CATS)) {
     const id = s === 'All' ? 'all' : slugify(s);
     return `<button class="chip" type="button" data-sub="${id}" aria-pressed="${s === 'All'}">${esc(s)} <span class="chip__count"><span class="sr-only">(</span>${n}<span class="sr-only">)</span></span></button>`;
   }).join('\n        ');
+  // every post in the notebook, newest first, with subtopic chips and a search scoped to this notebook;
+  // a notebook with no posts yet gets an empty state and a way back instead
+  const back = `<a class="link-arrow" href="../index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Back to the blog</a>`;
+  const browse = list.length ? `
+    <div class="browse__bar">
+      <div class="sub-chips" role="group" aria-label="Filter by subtopic">
+        ${chips}
+      </div>
+      <div class="searchbox">
+        <label for="nb-search">Search ${esc(CATS[c].label)}</label>
+        <input class="search" id="nb-search" type="search" placeholder="Titles, tags, places…" autocomplete="off" aria-controls="post-grid" aria-keyshortcuts="/">
+      </div>
+    </div>
+    <p class="sr-only" id="post-status" role="status" aria-live="polite"></p>
+    <div class="post-grid" id="post-grid" data-fill-rows>
+      ${list.map(p => postCard(p, '../')).join('\n      ')}
+      <div class="empty-state" id="post-empty" hidden>
+        <strong>Nothing in orbit for that search.</strong>
+        <button class="chip" type="button" id="post-reset">Clear filters</button>
+      </div>
+    </div>
+    ` : `
+    <div class="empty-state">
+      <strong>No posts in ${esc(CATS[c].label)} yet.</strong>
+      <p class="lede">The first one is on its way.</p>
+      ${back}
+    </div>
+    `;
   fill(`${c}/index.html`, {
     meta: `<span>${plural(list.length, 'post')}</span>${list.length ? `<span>· updated ${longDate(list[0].date)}</span>` : ''}`,
-    chips,
-    grid: '\n      ' + list.map(p => postCard(p, '../')).join('\n      ') + '\n      ',
+    browse,
   });
 }
 

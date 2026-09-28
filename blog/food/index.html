@@ -23,9 +23,8 @@
 <link rel="alternate" type="application/rss+xml" title="Aaditya Goswami — Blog" href="../../blog/feed.xml">
 <link rel="stylesheet" href="../../assets/css/theme.css">
 <script src="../../assets/js/site.js" defer></script>
-<script src="../assets/blog.js" defer></script>
 </head>
-<body data-root="../">
+<body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-header">
@@ -50,7 +49,6 @@
     <nav class="crumbs" aria-label="Breadcrumb"><a href="../index.html">Blog</a><span aria-hidden="true">/</span><span aria-current="page">Food & Places</span></nav>
     <div class="blogbar__tools">
       <a href="../about.html">About this blog</a>
-      <button class="search-btn" type="button" data-open-search aria-haspopup="dialog">Search <kbd class="kbd" aria-hidden="true">/</kbd></button>
       <a href="../feed.xml">RSS</a>
     </div>
   </div>
@@ -66,53 +64,15 @@
 
   <section class="container browse" data-nb="food" aria-labelledby="h-posts">
     <h2 class="sr-only" id="h-posts">Posts</h2>
-    <div class="sub-bar">
-      <div class="sub-chips bfilters" role="group" aria-label="Filter by subtopic">
-        <!-- gen:chips --><button class="chip" type="button" data-sub="all" aria-pressed="true">All <span class="chip__count"><span class="sr-only">(</span>0<span class="sr-only">)</span></span></button>
-        <button class="chip" type="button" data-sub="food" aria-pressed="false">Food <span class="chip__count"><span class="sr-only">(</span>0<span class="sr-only">)</span></span></button>
-        <button class="chip" type="button" data-sub="cities" aria-pressed="false">Cities <span class="chip__count"><span class="sr-only">(</span>0<span class="sr-only">)</span></span></button>
-        <button class="chip" type="button" data-sub="treks" aria-pressed="false">Treks <span class="chip__count"><span class="sr-only">(</span>0<span class="sr-only">)</span></span></button><!-- /gen:chips -->
-      </div>
-      <span class="meta-line">Newest first</span>
+    <!-- gen:browse -->
+    <div class="empty-state">
+      <strong>No posts in Food &amp; Places yet.</strong>
+      <p class="lede">The first one is on its way.</p>
+      <a class="link-arrow" href="../index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Back to the blog</a>
     </div>
-    <div class="post-grid" id="post-grid" data-fill-rows>
-      <!-- gen:grid -->
-      
-      <!-- /gen:grid -->
-      <div class="empty-state" id="grid-empty" hidden>
-        <strong>Nothing here yet.</strong>
-        <p class="lede">Try another subtopic, or grab the <a class="link-arrow" href="../feed.xml">RSS feed</a> to hear when it lands.</p>
-      </div>
-    </div>
+    <!-- /gen:browse -->
   </section>
 </main>
-<div class="search-dialog" id="search" hidden>
-  <div class="search-dialog__scrim" data-close-search></div>
-  <div class="search-dialog__panel" role="dialog" aria-modal="true" aria-label="Search posts">
-    <div class="search-dialog__bar">
-      <label class="sr-only" for="search-input">Search posts</label>
-      <input class="search" id="search-input" type="search" placeholder="Search posts, places, tools…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="search-results" aria-autocomplete="list">
-      <button class="kbd search-dialog__close" type="button" data-close-search aria-label="Close search">Esc</button>
-    </div>
-    <div class="search-dialog__cats" role="group" aria-label="Filter by notebook">
-      <button class="schip" type="button" data-cat="all" data-nb="all" aria-pressed="true"><i aria-hidden="true"></i>All</button>
-      <button class="schip" type="button" data-cat="tech" data-nb="tech" aria-pressed="false"><i aria-hidden="true"></i>Tech</button>
-      <button class="schip" type="button" data-cat="mind" data-nb="mind" aria-pressed="false"><i aria-hidden="true"></i>Mind &amp; Meaning</button>
-      <button class="schip" type="button" data-cat="food" data-nb="food" aria-pressed="false"><i aria-hidden="true"></i>Food &amp; Places</button>
-    </div>
-    <div class="search-dialog__body">
-      <div class="search-dialog__count" id="search-count" role="status" aria-live="polite"></div>
-      <div id="search-results" role="listbox" aria-label="Results"></div>
-      <p class="search-dialog__empty" id="search-empty" hidden>No posts match that. Try a place, a tool, or a broader word.</p>
-    </div>
-    <div class="search-dialog__foot">
-      <span class="search-dialog__hint"><span><kbd class="kbd">↑</kbd> <kbd class="kbd">↓</kbd> move</span><span><kbd class="kbd">↵</kbd> open</span></span>
-      <span>Runs in your browser · search-index.json</span>
-    </div>
-  </div>
-</div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <p class="site-footer__copy">© 2026 Aaditya Goswami · Delhi, India</p>

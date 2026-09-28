@@ -14,6 +14,7 @@
     "date":     { "type": "string", "format": "date", "description": "YYYY-MM-DD publish date" },
     "excerpt":  { "type": "string", "maxLength": 160 },
     "cover":    { "type": "string", "description": "Site-absolute path, e.g. /blog/images/<slug>/cover.jpg" },
-    "draft":    { "type": "boolean", "default": true }
+    "draft":    { "type": "boolean", "default": true },
+    "featured": { "type": "boolean", "default": false, "description": "Optional. true lists the post under \"Top posts\" on the blog front page (newest 3 featured posts). Omit the key when false." }
   }
 }

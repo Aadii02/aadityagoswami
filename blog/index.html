@@ -65,36 +65,11 @@
     <div class="ticker__track"><!-- gen:ticker --><span style="--nb: var(--paper)"><span class="tdot"></span>Reusability: What It Actually Means, and Why India Should Care</span><span style="--nb: var(--stone)"><span class="tdot"></span>Why We're Building a Community Before We Build a Rocket</span><span style="--nb: var(--paper)"><span class="tdot"></span>Reusability: What It Actually Means, and Why India Should Care</span><span style="--nb: var(--stone)"><span class="tdot"></span>Why We're Building a Community Before We Build a Rocket</span><span style="--nb: var(--paper)"><span class="tdot"></span>Reusability: What It Actually Means, and Why India Should Care</span><span style="--nb: var(--stone)"><span class="tdot"></span>Why We're Building a Community Before We Build a Rocket</span><span style="--nb: var(--paper)"><span class="tdot"></span>Reusability: What It Actually Means, and Why India Should Care</span><span style="--nb: var(--stone)"><span class="tdot"></span>Why We're Building a Community Before We Build a Rocket</span><span style="--nb: var(--paper)"><span class="tdot"></span>Reusability: What It Actually Means, and Why India Should Care</span><span style="--nb: var(--stone)"><span class="tdot"></span>Why We're Building a Community Before We Build a Rocket</span><span style="--nb: var(--paper)"><span class="tdot"></span>Reusability: What It Actually Means, and Why India Should Care</span><span style="--nb: var(--stone)"><span class="tdot"></span>Why We're Building a Community Before We Build a Rocket</span><span style="--nb: var(--paper)"><span class="tdot"></span>Reusability: What It Actually Means, and Why India Should Care</span><span style="--nb: var(--stone)"><span class="tdot"></span>Why We're Building a Community Before We Build a Rocket</span><span style="--nb: var(--paper)"><span class="tdot"></span>Reusability: What It Actually Means, and Why India Should Care</span><span style="--nb: var(--stone)"><span class="tdot"></span>Why We're Building a Community Before We Build a Rocket</span><!-- /gen:ticker --></div>
   </div>
 
-  <section class="container featured-wrap" aria-label="Latest post">
-    <!-- gen:featured --><!-- /gen:featured -->
-  </section>
-
-  <section class="container browse" id="browse" aria-labelledby="browse-title">
-    <h2 class="sr-only" id="browse-title">All posts</h2>
-    <div class="browse__bar">
-      <div class="nb-chips" id="notebook-filters" role="group" aria-label="Filter by notebook">
-        <!-- gen:chips -->
-        <button class="chip nb-chip" type="button" data-nb="all" data-nb-filter="all" aria-pressed="true"><span class="tdot" aria-hidden="true"></span>All <span class="chip__count"><span class="sr-only">(</span>0<span class="sr-only">)</span></span></button>
-        <button class="chip nb-chip" type="button" data-nb="tech" data-nb-filter="tech" aria-pressed="false"><span class="tdot" aria-hidden="true"></span>Tech <span class="chip__count"><span class="sr-only">(</span>0<span class="sr-only">)</span></span></button>
-        <button class="chip nb-chip" type="button" data-nb="mind" data-nb-filter="mind" aria-pressed="false"><span class="tdot" aria-hidden="true"></span>Mind &amp; Meaning <span class="chip__count"><span class="sr-only">(</span>0<span class="sr-only">)</span></span></button>
-        <button class="chip nb-chip" type="button" data-nb="food" data-nb-filter="food" aria-pressed="false"><span class="tdot" aria-hidden="true"></span>Food &amp; Places <span class="chip__count"><span class="sr-only">(</span>0<span class="sr-only">)</span></span></button>
-        <!-- /gen:chips -->
-      </div>
-      <div class="searchbox">
-        <label for="blog-search">Search</label>
-        <input class="search" id="blog-search" type="search" placeholder="engines, habits, chutney…" autocomplete="off" aria-controls="post-grid" aria-keyshortcuts="/">
-      </div>
-    </div>
-    <p class="sr-only" id="post-status" role="status" aria-live="polite"></p>
-    <div class="post-grid" id="post-grid" data-fill-rows>
-      <!-- gen:grid -->
+  <section class="container top-posts" aria-labelledby="top-title">
+    <!-- gen:top -->
+      <h2 class="sr-only" id="top-title">Top posts</h2>
       <p class="empty-state"><strong>First posts are on their way.</strong></p>
-      <!-- /gen:grid -->
-      <div class="empty-state" id="post-empty" hidden>
-        <strong>Nothing in orbit for that search.</strong>
-        <button class="chip mono" type="button" id="post-reset">Clear filters</button>
-      </div>
-    </div>
+      <!-- /gen:top -->
   </section>
 
   <section class="container section notebooks" aria-labelledby="nb-title" style="padding-top: clamp(72px, 8.4vw, 120px)">
@@ -104,27 +79,24 @@
     </div>
     <div class="nb-grid">
       <!-- gen:notebooks -->
-      <button class="nb-card tilt" type="button" data-nb="tech" data-pick-notebook="tech" aria-controls="post-grid" aria-labelledby="nb-tech-do nb-tech-name">
-        <span class="nb-card__top"><span>Notebook 01</span><span>0 in feed</span></span>
-        <span class="nb-card__name" id="nb-tech-name">Tech</span>
+      <a class="nb-card tilt" href="tech/index.html" data-nb="tech">
+        <span class="nb-card__top"><span>Notebook 01</span><span>0 posts</span></span>
+        <span class="nb-card__name">Tech</span>
         <span class="nb-card__blurb">Engines, test stands, software and the occasional deep dive into AI.</span>
         <span class="nb-card__posts"><span class="nb-card__none">First post coming soon.</span></span>
-        <span class="sr-only" id="nb-tech-do">Show posts from</span>
-      </button>
-      <button class="nb-card tilt" type="button" data-nb="mind" data-pick-notebook="mind" aria-controls="post-grid" aria-labelledby="nb-mind-do nb-mind-name">
-        <span class="nb-card__top"><span>Notebook 02</span><span>0 in feed</span></span>
-        <span class="nb-card__name" id="nb-mind-name">Mind &amp; Meaning</span>
+      </a>
+      <a class="nb-card tilt" href="mind/index.html" data-nb="mind">
+        <span class="nb-card__top"><span>Notebook 02</span><span>0 posts</span></span>
+        <span class="nb-card__name">Mind &amp; Meaning</span>
         <span class="nb-card__blurb">Habits, focus and the slower questions behind the work.</span>
         <span class="nb-card__posts"><span class="nb-card__none">First post coming soon.</span></span>
-        <span class="sr-only" id="nb-mind-do">Show posts from</span>
-      </button>
-      <button class="nb-card tilt" type="button" data-nb="food" data-pick-notebook="food" aria-controls="post-grid" aria-labelledby="nb-food-do nb-food-name">
-        <span class="nb-card__top"><span>Notebook 03</span><span>0 in feed</span></span>
-        <span class="nb-card__name" id="nb-food-name">Food &amp; Places</span>
+      </a>
+      <a class="nb-card tilt" href="food/index.html" data-nb="food">
+        <span class="nb-card__top"><span>Notebook 03</span><span>0 posts</span></span>
+        <span class="nb-card__name">Food &amp; Places</span>
         <span class="nb-card__blurb">Street food, cities and the places worth the queue.</span>
         <span class="nb-card__posts"><span class="nb-card__none">First post coming soon.</span></span>
-        <span class="sr-only" id="nb-food-do">Show posts from</span>
-      </button>
+      </a>
       <!-- /gen:notebooks -->
     </div>
   </section>

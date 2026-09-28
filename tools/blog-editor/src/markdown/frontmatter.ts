@@ -1,7 +1,7 @@
 import schema from '../../../../docs/blog-editor/spec/frontmatter.schema.json';
 import { categoryById, type PostMeta } from '../model';
 
-/** The frontmatter object in export key order: title, subtitle?, slug, category, sub?, tags, date, excerpt, cover?, draft. */
+/** The frontmatter object in export key order: title, subtitle?, slug, category, sub?, tags, date, excerpt, cover?, draft, featured?. */
 export function frontmatterData(meta: PostMeta, coverPath: string | null): Record<string, unknown> {
   const d: Record<string, unknown> = { title: meta.title.trim() };
   if (meta.subtitle.trim()) d.subtitle = meta.subtitle.trim();
@@ -13,6 +13,8 @@ export function frontmatterData(meta: PostMeta, coverPath: string | null): Recor
   d.excerpt = meta.excerpt.trim();
   if (coverPath) d.cover = coverPath;
   d.draft = meta.draft;
+  // optional: only written when the post is featured, like subtitle and cover
+  if (meta.featured) d.featured = true;
   return d;
 }
 
@@ -27,6 +29,7 @@ export function metaFromFrontmatter(d: Record<string, unknown>): PostMeta {
     date: str(d.date), excerpt: str(d.excerpt),
     cover: cover ? cover.split('/').pop()! : null,
     draft: d.draft !== false,
+    featured: d.featured === true,
   };
 }
 
@@ -88,7 +91,7 @@ function checkValue(key: string, value: unknown, p: Prop, out: Problem[]) {
   }
 }
 
-const LABELS: Record<string, string> = { title: 'Title', slug: 'Slug', category: 'Category', date: 'Publish date', excerpt: 'Excerpt', tags: 'Tag', sub: 'Section', cover: 'Cover', subtitle: 'Subtitle', draft: 'Status' };
+const LABELS: Record<string, string> = { title: 'Title', slug: 'Slug', category: 'Category', date: 'Publish date', excerpt: 'Excerpt', tags: 'Tag', sub: 'Section', cover: 'Cover', subtitle: 'Subtitle', draft: 'Status', featured: 'Feature on blog front page' };
 const label = (k: string) => LABELS[k] ?? k;
 
 /** Extra checks the site build needs beyond the schema. */

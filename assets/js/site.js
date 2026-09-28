@@ -116,29 +116,30 @@
     if (linked && projGrid.contains(linked)) { showCat('all', false); setTimeout(function () { scrollToEl(linked); }, 60); }
   }
 
-  /* ---------- Blog index: notebook chips + live search ---------- */
+  /* ---------- Notebook pages: subtopic chips + search scoped to this notebook ---------- */
   var postGrid = document.getElementById('post-grid');
-  var searchInput = document.getElementById('blog-search');
+  var searchInput = document.getElementById('nb-search');
   if (postGrid && searchInput) {
-    var nbChips = Array.prototype.slice.call(document.querySelectorAll('#notebook-filters .chip'));
-    var nbCards = Array.prototype.slice.call(document.querySelectorAll('[data-pick-notebook]'));
+    var subChips = Array.prototype.slice.call(document.querySelectorAll('.sub-chips .chip'));
     var postItems = Array.prototype.slice.call(postGrid.querySelectorAll('[data-item]'));
     var empty = document.getElementById('post-empty');
     var postStatus = document.getElementById('post-status');
-    var cat = 'all';
+    var sub = 'all';
     var statusTimer;
     var apply = function (announce) {
       var words = searchInput.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
       var n = 0;
-      nbChips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-nb-filter') === cat)); });
+      subChips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-sub') === sub)); });
       postItems.forEach(function (el) {
         var hay = el.getAttribute('data-search') || '';
-        var on = (cat === 'all' || el.getAttribute('data-nb') === cat) &&
+        var on = (sub === 'all' || el.getAttribute('data-sub') === sub) &&
           words.every(function (w) { return hay.indexOf(w) !== -1; });
         el.hidden = !on;
         if (on) n++;
       });
-      empty.hidden = n > 0;
+      /* the no-match message is only for an actual search or filter, never for the plain list */
+      empty.hidden = n > 0 || (!words.length && sub === 'all');
+      empty.querySelector('strong').textContent = words.length ? 'Nothing in orbit for that search.' : 'No posts in this subtopic yet.';
       fillRows(postGrid);
       if (announce && postStatus) {
         clearTimeout(statusTimer);
@@ -148,21 +149,26 @@
         }, 400);
       }
     };
-    nbChips.forEach(function (c) {
-      c.addEventListener('click', function () { cat = c.getAttribute('data-nb-filter'); apply(true); });
-    });
-    nbCards.forEach(function (b) {
-      b.addEventListener('click', function () {
-        cat = b.getAttribute('data-pick-notebook');
-        searchInput.value = '';
+    var validSub = function (s) { return subChips.some(function (c) { return c.getAttribute('data-sub') === s; }); };
+    /* #ai on the URL keeps a subtopic filter shareable */
+    var fromHash = function (announce) {
+      var h = decodeURIComponent(location.hash.slice(1)).toLowerCase();
+      sub = h && validSub(h) ? h : 'all';
+      apply(announce);
+    };
+    subChips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        sub = c.getAttribute('data-sub');
+        history.replaceState(null, '', sub === 'all' ? location.pathname + location.search : '#' + sub);
         apply(true);
-        scrollToEl(document.getElementById('browse'));
       });
     });
+    window.addEventListener('hashchange', function () { fromHash(true); });
     searchInput.addEventListener('input', function () { apply(true); });
     document.getElementById('post-reset').addEventListener('click', function () {
-      cat = 'all';
+      sub = 'all';
       searchInput.value = '';
+      history.replaceState(null, '', location.pathname + location.search);
       apply(true);
       searchInput.focus();
     });
@@ -174,7 +180,7 @@
       e.preventDefault();
       searchInput.focus();
     });
-    /* a search restored by the browser (back button) is applied straight away */
-    if (searchInput.value) apply(false);
+    /* a subtopic in the URL, or a search restored by the browser (back button), is applied straight away */
+    fromHash(false);
   }
 })();

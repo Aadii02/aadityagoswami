@@ -1,6 +1,6 @@
-/* Blog behaviour on the post, notebook and "About this blog" pages. assets/js/site.js already handles the theme
-   toggle, menu and grid layout; this file adds the search dialog, notebook filters, code copy and the table of contents.
-   (The blog index has its own inline search, in site.js.) */
+/* Blog behaviour on post pages and "About this blog". assets/js/site.js already handles the theme
+   toggle, menu and grid layout; this file adds the search dialog, code copy and the table of contents.
+   (Notebook pages have their own search and subtopic filters, in site.js.) */
 (function () {
   var body = document.body;
   var root = body.getAttribute('data-root') || '';   /* path from this page back to /blog/ */
@@ -122,42 +122,6 @@
     });
     /* a page restored from the back/forward cache must never come back scroll-locked */
     window.addEventListener('pageshow', function () { search.hidden = true; document.body.style.overflow = ''; });
-  }
-
-  /* ---- category filters (#treks keeps the state shareable) ---- */
-  var grid = document.getElementById('post-grid');
-  if (grid) {
-    var fChips = Array.prototype.slice.call(document.querySelectorAll('.bfilters .chip'));
-    var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-item]'));
-    var pEmpty = document.getElementById('grid-empty');
-    var current = null;
-    function valid(sub) { return fChips.some(function (c) { return c.getAttribute('data-sub') === sub; }); }
-    function show(sub) {
-      if (sub === current) return;
-      current = sub;
-      fChips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-sub') === sub)); });
-      var n = 0;
-      cards.forEach(function (card) {
-        var on = sub === 'all' || card.getAttribute('data-sub') === sub;
-        card.hidden = !on;
-        if (on) n++;
-      });
-      if (pEmpty) pEmpty.hidden = n > 0;
-      if (window.AG) window.AG.fillRows(grid);
-    }
-    fChips.forEach(function (c) {
-      c.addEventListener('click', function () {
-        var sub = c.getAttribute('data-sub');
-        history.replaceState(null, '', sub === 'all' ? location.pathname + location.search : '#' + sub);
-        show(sub);
-      });
-    });
-    function fromHash(animate) {
-      var h = decodeURIComponent(location.hash.slice(1)).toLowerCase();
-      show(h && valid(h) ? h : 'all', animate);
-    }
-    window.addEventListener('hashchange', function () { fromHash(true); });
-    fromHash(false);
   }
 
   /* ---- code blocks: copy button ---- */

@@ -28,6 +28,8 @@ export interface PostMeta {
   /** file name inside `images` (e.g. "cover.jpg"), or null */
   cover: string | null;
   draft: boolean;
+  /** listed under "Top posts" on the blog front page. Optional so drafts saved before the toggle existed still load. */
+  featured?: boolean;
 }
 
 /** One IndexedDB record per post. Images stay Blobs, keyed by their export file name. */
@@ -56,7 +58,7 @@ export function newPost(): PostRecord {
     doc: emptyDoc(),
     meta: {
       title: '', subtitle: '', slug: '', slugLocked: false, category: null, sub: '',
-      tags: [], date: todayISO(), excerpt: '', cover: null, draft: true,
+      tags: [], date: todayISO(), excerpt: '', cover: null, draft: true, featured: false,
     },
     images: {},
     createdAt: now,
