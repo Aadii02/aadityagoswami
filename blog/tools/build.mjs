@@ -118,11 +118,12 @@ const postCard = (p, prefix) => `<a class="card post-card" href="${prefix}posts/
 
 // ---------- blog index ----------
 {
+  // with no posts yet, the featured card is left out and the grid shows a short note instead
   const latest = posts[0];
-  const f = latest.feature || {};
-  const stats = f.stats || [[String(latest.minutes), 'min read']];
-  const fTags = f.tags || (latest.tags || []).slice(0, 3);
-  const featured = `<a class="featured tilt" href="posts/${latest.slug}.html" data-nb="${latest.cat}">
+  const f = (latest && latest.feature) || {};
+  const stats = latest ? f.stats || [[String(latest.minutes), 'min read']] : [];
+  const fTags = latest ? f.tags || (latest.tags || []).slice(0, 3) : [];
+  const featured = !latest ? '' : `<a class="featured tilt" href="posts/${latest.slug}.html" data-nb="${latest.cat}">
       <div class="featured__main">
         <p class="featured__kicker"><span class="featured__badge">Latest post</span><span>${esc(latest.catLabel)} · <time datetime="${latest.date}">${longDate(latest.date)}</time> · ${latest.read}</span></p>
         <h2 class="featured__title">${esc(latest.title)}</h2>
@@ -159,11 +160,11 @@ const postCard = (p, prefix) => `<a class="card post-card" href="${prefix}posts/
   const archive = ARCHIVE.map(a => `<li><a class="row" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer"><span class="row__kind">${esc(a.kind)}</span><span class="row__title">${esc(a.title)}<span class="sr-only"> (on Substack, opens in a new tab)</span></span>${ARROW.replace('width="22" height="22"', 'width="36" height="36"')}</a></li>`);
 
   fill('index.html', {
-    'latest-line': `Latest: <time datetime="${latest.date}">${longDate(latest.date)}</time> · ${plural(posts.length, 'post')} in the feed`,
+    'latest-line': latest ? `Latest: <time datetime="${latest.date}">${longDate(latest.date)}</time> · ${plural(posts.length, 'post')} in the feed` : 'New posts coming soon',
     ticker,
     featured,
     chips: '\n        ' + chips.join('\n        ') + '\n        ',
-    grid: '\n      ' + posts.map(p => postCard(p, '')).join('\n      ') + '\n      ',
+    grid: '\n      ' + (posts.length ? posts.map(p => postCard(p, '')).join('\n      ') : '<p class="empty-state"><strong>First posts are on their way.</strong></p>') + '\n      ',
     notebooks: '\n      ' + notebooks.join('\n      ') + '\n      ',
     archive: '\n        ' + archive.join('\n        ') + '\n        ',
   });

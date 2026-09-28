@@ -6,38 +6,7 @@
     <atom:link href="https://aadii02.github.io/aadityagoswami/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Food and places, engineering notes and essays from the founder of SkyLakes Aerospace.</description>
     <language>en-in</language>
-    <lastBuildDate>Mon, 21 Sep 2026 03:30:00 GMT</lastBuildDate>
-    <item>
-      <title>Best Vada Pav Spots in Mumbai</title>
-      <link>https://aadii02.github.io/aadityagoswami/blog/posts/best-vada-pav-spots-in-mumbai.html</link>
-      <guid isPermaLink="true">https://aadii02.github.io/aadityagoswami/blog/posts/best-vada-pav-spots-in-mumbai.html</guid>
-      <pubDate>Mon, 21 Sep 2026 03:30:00 GMT</pubDate>
-      <category>Food &amp; Places</category>
-      <description>Six stalls, two days, one very full stomach. Ranked by the chutney, the pav, and whether the queue was worth it.</description>
-    </item>
-    <item>
-      <title>On Doing Less, Better</title>
-      <link>https://aadii02.github.io/aadityagoswami/blog/posts/on-doing-less-better.html</link>
-      <guid isPermaLink="true">https://aadii02.github.io/aadityagoswami/blog/posts/on-doing-less-better.html</guid>
-      <pubDate>Thu, 17 Sep 2026 03:30:00 GMT</pubDate>
-      <category>Mind &amp; Meaning</category>
-      <description>I cut my to-do list in half for a month. The work that survived was the work that mattered.</description>
-    </item>
-    <item>
-      <title>What a Water Flow Test Taught Me Before a Metal Print</title>
-      <link>https://aadii02.github.io/aadityagoswami/blog/posts/water-flow-test-before-metal-print.html</link>
-      <guid isPermaLink="true">https://aadii02.github.io/aadityagoswami/blog/posts/water-flow-test-before-metal-print.html</guid>
-      <pubDate>Mon, 14 Sep 2026 03:30:00 GMT</pubDate>
-      <category>Tech</category>
-      <description>Before sending an injector off to be printed in metal, I ran water through a resin copy. The numbers disagreed with the CAD, and that disagreement saved a print.</description>
-    </item>
-    <item>
-      <title>Understanding Vector Databases</title>
-      <link>https://aadii02.github.io/aadityagoswami/blog/posts/understanding-vector-databases.html</link>
-      <guid isPermaLink="true">https://aadii02.github.io/aadityagoswami/blog/posts/understanding-vector-databases.html</guid>
-      <pubDate>Wed, 09 Sep 2026 03:30:00 GMT</pubDate>
-      <category>Tech</category>
-      <description>What embeddings are, why similarity search needs its own index, and when a plain Postgres table is enough.</description>
-    </item>
+    <lastBuildDate>Mon, 28 Sep 2026 10:18:06 GMT</lastBuildDate>
+
   </channel>
 </rss>

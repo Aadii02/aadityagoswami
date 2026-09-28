@@ -28,7 +28,7 @@ blog/
 
 ## Adding a post
 
-1. Copy one of the files in `posts/` that matches the notebook, and rename it to the new slug.
+1. Copy the template for the notebook from `templates/` (`tech.html` has a table of contents and a code block, `mind.html` a pull quote, `food.html` visit details and a photo gallery) to `posts/<new-slug>.html`, and delete its `<meta name="robots" content="noindex">` line. The templates still hold the old sample posts' text as examples. The build only reads `posts/`, so templates never appear on the site.
 2. Edit the JSON block at the top of the `<article>` (`<script type="application/json" id="post-meta">`). Fill in `title`, `cat` (`tech` / `mind` / `food`), `sub`, `date` (YYYY-MM-DD), `excerpt`, `photo`, `alt`, `tags`, `keywords`, plus `place` and `mustTry` for food posts.
    - The newest post is the featured card on the blog home. Its right-hand panel shows `feature.stats` (big numbers) and `feature.tags`, and the card's link text is `feature.cta`. Without a `feature` block it shows the read time and the post's first three tags. Only use numbers that are in the post.
 3. Edit the page head (title, description, `og:*`, `article:*`), the breadcrumb's notebook link, the article header, and the text between `<!-- body -->` and `<!-- /body -->`.
