@@ -1,0 +1,63 @@
+/* Export Markdown dialog (screen 07). */
+
+.scrim {
+  position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; padding: 16px;
+  background: var(--scrim);
+}
+.scrim[hidden] { display: none; }
+.modal {
+  width: min(820px, 100%); max-height: calc(100dvh - 32px); display: flex; flex-direction: column; gap: 18px;
+  padding: 26px 28px 24px; border-radius: 16px; background: var(--espresso); border: 1px solid rgba(181, 101, 43, .6);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, .6); animation: pop-in .14s ease-out;
+}
+.modal__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.modal__title { margin: 0; font-family: var(--font-display); font-size: 28px; font-weight: 500; }
+.modal__sub { margin: 6px 0 0; font-size: var(--fs-ui); color: var(--stone-on-panel); }
+.modal__close { width: 40px; height: 40px; color: var(--stone-on-panel); }
+.modal__close .icon { width: 18px; height: 18px; stroke-width: 1.8; }
+
+.filename {
+  display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 0 12px; border-radius: var(--radius);
+  background: var(--espresso-deep); border: 1px solid rgba(181, 101, 43, .45);
+  font-family: var(--font-mono); font-size: var(--fs-ui-sm);
+}
+.filename .icon { width: 16px; height: 16px; color: var(--stone-on-panel); }
+.filename__dir { color: var(--stone-on-panel); }
+.filename__name { color: var(--paper); margin-left: -10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.problems { margin: 0; padding: 12px 16px 12px 34px; border-radius: var(--radius); border: 1px solid var(--ember); background: rgba(232, 163, 61, .08); color: var(--paper); font-size: var(--fs-ui-sm); }
+.problems li + li { margin-top: 4px; }
+.problems li::marker { color: var(--ember); }
+.export-warn { margin: -6px 0 0; font-size: var(--fs-ui-sm); color: var(--stone-on-panel); }
+.export-warn::before { content: "● "; color: var(--copper); }
+
+.md-view {
+  flex: 1 1 auto; min-height: 120px; max-height: 420px; overflow: auto; padding: 16px 0; border-radius: 10px;
+  background: var(--ink); border: 1px solid rgba(181, 101, 43, .35);
+  font-family: var(--font-mono); font-size: 13.5px; line-height: 1.75;
+}
+.md-view:focus-visible { outline-offset: -2px; }
+.md-line { display: flex; min-width: max-content; }
+.md-ln { width: 44px; flex-shrink: 0; padding-right: 16px; text-align: right; color: #5E6472; user-select: none; }
+.md-src { padding-right: 20px; white-space: pre; color: var(--paper); }
+.md-key { color: var(--copper-text); }
+.md-rule { color: var(--stone); }
+.md-text { color: #CFC6B3; }
+.md-mark { color: var(--copper-soft); }
+.md-code { color: var(--paper); }
+.md-html { color: var(--stone); }
+
+.modal__foot { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; font-size: var(--fs-ui); }
+.modal__foot .btn--outline { padding: 0 16px; }
+.modal__foot .btn--primary { padding: 0 18px; }
+.modal__foot .btn:disabled { opacity: .4; }
+.check { display: inline-flex; align-items: center; gap: 8px; min-height: var(--hit); cursor: pointer; }
+.check[hidden] { display: none; }
+.check input { width: 18px; height: 18px; margin: 0; accent-color: var(--ember); cursor: pointer; }
+
+@media (max-width: 640px) {
+  .modal { padding: 20px 16px; gap: 14px; }
+  .modal__foot { gap: 8px 16px; }
+  .modal__foot .topbar__spacer { display: none; }
+  .modal__foot .btn { flex: 1; }
+}

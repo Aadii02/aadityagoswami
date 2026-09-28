@@ -5,9 +5,10 @@
 // It reads the JSON block (<script type="application/json" id="post-meta">) at the top of each blog/posts/*.html,
 // then rewrites only the regions between <!-- gen:NAME --> and <!-- /gen:NAME --> markers, plus
 // blog/search-index.json and blog/feed.xml. Everything outside the markers is left exactly as you wrote it.
-import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, existsSync, unlinkSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseFrontmatter, renderPostPage, relativeImage } from './post-page.mjs';
 
 // Where the blog lives once deployed. Used only for absolute links in feed.xml and share tags.
 const SITE = 'https://aadii02.github.io/aadityagoswami/blog/';
@@ -38,6 +39,39 @@ const shortDate = iso => longDate(iso).slice(0, 6);
 const rfc822 = iso => new Date(iso + 'T09:00:00+05:30').toUTCString();
 const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
 const ARROW = '<svg class="arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>';
+
+// ---------- Markdown posts (from the blog editor): blog/posts/<slug>.md → blog/posts/<slug>.html ----------
+// A post goes live when it has draft: false and its date has arrived; until then no .html is written (or a stale one
+// is removed). Pages written here carry a "Generated from" comment; hand-written pages are never touched.
+{
+  const GENERATED = '<!-- Generated from blog/posts/';
+  const d = new Date();
+  const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const dir = join(BLOG, 'posts');
+  const files = readdirSync(dir);
+  const mdSlugs = new Set();
+  for (const file of files.filter(f => f.endsWith('.md'))) {
+    const slug = file.replace(/\.md$/, '');
+    mdSlugs.add(slug);
+    const { data, body } = parseFrontmatter(readFileSync(join(dir, file), 'utf8'));
+    if (data.slug !== slug) throw new Error(`posts/${file}: file name and slug "${data.slug}" differ`);
+    const out = join(dir, `${slug}.html`);
+    const existing = existsSync(out) ? readFileSync(out, 'utf8') : null;
+    if (existing !== null && !existing.includes(GENERATED)) throw new Error(`posts/${slug}.html is hand-written; pick another slug for posts/${file}`);
+    const live = data.draft === false && data.date <= today;
+    if (!live) {
+      if (existing !== null) unlinkSync(out);
+      console.log(`skipped posts/${file} (${data.draft !== false ? 'draft' : `scheduled for ${data.date}`})`);
+      continue;
+    }
+    if (!data.sub) throw new Error(`posts/${file}: add "sub:" (the section inside ${data.category}) so the post can be filed`);
+    writeFileSync(out, renderPostPage(data, body, { resolveSrc: relativeImage }));
+  }
+  // a generated page whose .md is gone goes too
+  for (const file of files.filter(f => f.endsWith('.html') && !mdSlugs.has(f.replace(/\.html$/, '')))) {
+    if (readFileSync(join(dir, file), 'utf8').includes(GENERATED)) unlinkSync(join(dir, file));
+  }
+}
 
 // ---------- read posts ----------
 const posts = readdirSync(join(BLOG, 'posts')).filter(f => f.endsWith('.html')).map(file => {

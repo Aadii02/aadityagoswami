@@ -1,0 +1,130 @@
+/* Editor screen: top bar, writing canvas, shortcut hints (screens 01, 02, 03, 08). */
+
+.editor-screen { height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* ---------- top bar ---------- */
+.topbar {
+  height: var(--topbar-h); flex-shrink: 0; display: flex; align-items: center; gap: 16px;
+  padding: 0 20px 0 12px; border-bottom: 1px solid var(--line);
+}
+.topbar__back {
+  height: var(--hit); display: inline-flex; align-items: center; gap: 6px; padding: 0 10px;
+  border-radius: var(--radius); color: var(--stone); text-decoration: none; font-size: var(--fs-ui); font-weight: 500;
+}
+.topbar__back .icon { width: 18px; height: 18px; stroke-width: 1.8; }
+.topbar__back:hover { color: var(--paper); }
+.topbar__rule { width: 1px; height: 24px; background: rgba(181, 101, 43, .35); flex-shrink: 0; }
+.topbar__cats { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.topbar__cats .label { white-space: nowrap; }
+.pills { display: flex; align-items: center; gap: 8px; }
+.pills.is-shaking { animation: shake .42s cubic-bezier(.36, .07, .19, .97); }
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); } 20%, 80% { transform: translateX(3px); }
+  30%, 50%, 70% { transform: translateX(-5px); } 40%, 60% { transform: translateX(5px); }
+}
+.cat-hint { font-size: var(--fs-ui-sm); color: var(--ember); white-space: nowrap; }
+.topbar__spacer { flex-grow: 1; }
+.topbar__stats { font-size: var(--fs-ui-sm); color: var(--stone); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.save-status { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-ui-sm); color: var(--stone); white-space: nowrap; }
+.save-status .icon { width: 15px; height: 15px; stroke-width: 2; }
+.save-status__dot { width: 6px; height: 6px; margin-right: 2px; border-radius: 50%; border: 1px solid var(--stone); }
+.save-status .icon--spin { animation: spin 1.4s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.topbar__tools { display: flex; align-items: center; gap: 2px; }
+
+/* ---------- workspace: canvas + optional sidebar ---------- */
+.workspace { flex-grow: 1; display: flex; min-height: 0; }
+.canvas-scroll { position: relative; flex-grow: 1; min-width: 0; overflow-y: auto; overflow-x: hidden; }
+.canvas {
+  position: relative; z-index: 1;
+  width: min(var(--canvas-w), 100% - 32px); margin: 0 auto; padding: 88px 0 160px;
+  display: flex; flex-direction: column;
+}
+
+.cover-btn {
+  align-self: flex-start; height: 40px; display: inline-flex; align-items: center; gap: 8px;
+  padding: 0 12px; margin: 0 0 20px -12px; border: 0; border-radius: var(--radius);
+  background: transparent; color: var(--stone); font-size: var(--fs-ui);
+}
+.cover-btn .icon { width: 18px; height: 18px; }
+.cover-btn:hover { color: var(--paper); background: rgba(239, 230, 210, .04); }
+.cover-thumb {
+  align-self: flex-start; display: flex; align-items: center; gap: 12px; margin: 0 0 20px -12px; padding: 6px 12px 6px 6px;
+  border: 0; border-radius: var(--radius); background: transparent; color: var(--stone); font-size: var(--fs-ui);
+}
+.cover-thumb img { width: 64px; height: 40px; object-fit: cover; border-radius: var(--radius-sm); border: 1px solid var(--line-strong); }
+.cover-thumb:hover { color: var(--paper); background: rgba(239, 230, 210, .04); }
+
+/* Title and subtitle are auto-growing textareas so long titles wrap like screen 02. */
+.title-input, .subtitle-input {
+  display: block; width: 100%; padding: 0; border: 0; background: transparent; resize: none; overflow: hidden;
+}
+.title-input {
+  font-family: var(--font-display); font-size: var(--fs-title); font-weight: 500; line-height: 1.12;
+  letter-spacing: -0.01em; color: var(--paper);
+}
+.title-input:placeholder-shown { font-size: 56px; line-height: 1.15; }
+.subtitle-input {
+  margin-top: 12px; font-family: var(--font-body); font-style: italic; font-size: var(--fs-subtitle);
+  line-height: 1.4; color: var(--stone);
+}
+.subtitle-input:placeholder-shown { margin-top: 14px; font-size: 24px; }
+.title-input:focus-visible, .subtitle-input:focus-visible { outline: none; }
+.canvas__rule { width: 48px; height: 1px; background: var(--copper); margin: 26px 0 22px; }
+.is-empty .canvas__rule { margin: 36px 0 32px; }
+
+/* ---------- shortcut hints + sketch (empty post only) ---------- */
+.hints {
+  position: fixed; left: 0; right: 0; bottom: 28px; z-index: 2; display: flex; justify-content: center; gap: 28px;
+  font-size: 12px; color: var(--stone); pointer-events: none; transition: opacity .3s;
+}
+.hints span { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+.sketch {
+  position: fixed; right: 70px; bottom: -110px; width: 520px; height: 520px; z-index: 0;
+  opacity: .16; pointer-events: none; transition: opacity .3s;
+}
+.editor-screen:not(.is-empty) .hints, .editor-screen:not(.is-empty) .sketch { opacity: 0; }
+.editor-screen.has-sidebar .hints { right: var(--sidebar-w); }
+.editor-screen.has-sidebar .sketch { right: calc(var(--sidebar-w) + 40px); }
+
+/* ---------- small screens: light editing from 390px ---------- */
+@media (max-width: 1100px) {
+  .topbar__cats .label, .topbar__stats { display: none; }
+}
+@media (max-width: 760px) {
+  .topbar { gap: 8px; padding: 0 8px 0 4px; }
+  .topbar__back span, .topbar__rule, .save-status__text { display: none; }
+  .topbar__cats { overflow-x: auto; scrollbar-width: none; }
+  .pill { padding: 0 11px; }
+  .topbar__tools .icon-btn[data-action="focus"] { display: none; }
+  .btn--publish { padding: 0 14px; }
+  .canvas { padding-top: 40px; }
+  .title-input { font-size: 34px; }
+  .title-input:placeholder-shown { font-size: 40px; }
+  .hints, .sketch { display: none; }
+}
+@media (max-width: 560px) {
+  .topbar__cats { display: none; }
+}
+
+/* ---------- focus mode (screen 06) ---------- */
+.focus-hint {
+  position: fixed; left: 0; right: 0; bottom: 30px; z-index: 5; display: none; justify-content: center; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--stone); pointer-events: none; opacity: 0; transition: opacity .6s;
+}
+.focus-hint kbd { background: transparent; }
+.focus-hint__dot { margin: 0 8px; }
+.focus-hint__words { font-variant-numeric: tabular-nums; }
+.focus-mode .focus-hint { display: flex; }
+.focus-mode .focus-hint.is-visible { opacity: 1; transition-duration: .2s; }
+
+.focus-mode .topbar { display: none; }
+.focus-mode .hints, .focus-mode .sketch, .focus-mode .cover-btn, .focus-mode .cover-thumb { display: none; }
+.focus-mode .canvas { padding-top: 150px; padding-bottom: 45vh; }
+.focus-mode .prose { font-size: 21px; line-height: 1.75; }
+/* the block with the caret stays at full strength; the rest recede */
+.focus-mode .prose > *,
+.focus-mode .title-input, .focus-mode .subtitle-input, .focus-mode .canvas__rule { opacity: .32; transition: opacity .25s; }
+.focus-mode .prose > .is-current,
+.focus-mode .title-input:focus, .focus-mode .subtitle-input:focus { opacity: 1; }
+.focus-mode .prose:not(.ProseMirror-focused) > .is-current { opacity: .32; }

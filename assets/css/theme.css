@@ -725,6 +725,25 @@ a:hover { color: var(--copper-text); }
 .brk { display: flex; justify-content: center; gap: 14px; padding: 12px 0; }
 .brk span { width: 6px; height: 6px; border-radius: 50%; background: var(--copper); }
 .where { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--copper-text); }
+
+/* blocks from Markdown posts (blog/posts/*.md, rendered by blog/tools/post-page.mjs) */
+.pbody h3 { margin-top: 1.8em; font-size: clamp(21px, 1.6vw, 24px); line-height: 1.2; color: var(--paper); letter-spacing: -0.015em; }
+.pbody h2 + *, .pbody h3 + * { margin-top: .7em; }
+.pbody ul.plist { padding-left: 1.3em; list-style: disc; border-top: 0; }
+.pbody ul.plist li { display: list-item; padding: 0; border: 0; }
+.pbody ul.plist li + li { margin-top: .5em; }
+.pbody ul.plist li::marker { color: var(--copper-text); }
+.pq__cite { display: block; margin-top: 12px; font-family: var(--font-mono); font-size: 12px; font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); }
+.pbody figure.img { margin-block: 2em 0; display: flex; flex-direction: column; gap: 10px; }
+.pbody figure.img + * { margin-top: 2em; }
+.pbody figure.img img { display: block; width: 100%; height: auto; border-radius: var(--radius-sm); }
+.pbody figure.img figcaption { font-size: 15px; color: var(--paper-soft); text-align: center; }
+/* wide: out of the 680px column to 960px; full: edge to edge */
+.pbody figure.img--wide { --w: min(960px, 100vw - 2 * var(--gutter)); width: var(--w); margin-inline: calc((100% - var(--w)) / 2); }
+.pbody figure.img--full { width: 100vw; margin-inline: calc(50% - 50vw); }
+.pbody figure.img--full img { border-radius: 0; }
+.pbody figure.img--full figcaption { padding-inline: var(--gutter); }
+.post { overflow-x: clip; }
 .pbody h2 + .where { margin-top: .6em; }
 .info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; padding: 20px 24px; border: 1px solid var(--line); border-radius: var(--radius-sm); font-size: 16px; line-height: 1.45; }
 .info dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--stone); }

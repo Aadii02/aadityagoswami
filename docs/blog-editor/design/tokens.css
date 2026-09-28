@@ -1,0 +1,57 @@
+/* Blog editor — "Da Vinci's workshop at night"
+   Design tokens. Import once, use the variables everywhere. */
+
+:root {
+  /* Brand palette (as specified) */
+  --ink:       #121829;  /* page background */
+  --espresso:  #3B2A22;  /* surfaces, panels, menus, code blocks */
+  --copper:    #B5652B;  /* borders, tags, hover — NOT for small text on ink */
+  --ember:     #E8A33D;  /* primary accent, used sparingly: Publish, active states, caret, selection */
+  --stone:     #8A8F98;  /* muted text on ink (5.2:1) */
+  --paper:     #EFE6D2;  /* main text */
+
+  /* Derived — needed for contrast / depth */
+  --espresso-deep:   #2A1E18;  /* inputs inside espresso panels */
+  --ink-raised:      #1A2036;  /* kbd chips, image placeholders, inputs on ink */
+  --stone-on-panel:  #B3AA9C;  /* muted text on espresso (stone fails 4.5:1 there) */
+  --copper-text:     #D4874F;  /* copper-coloured small text on ink (eyebrows, drop cap, YAML keys) */
+  --copper-soft:     #E3A274;  /* keywords / icons on espresso */
+  --line:            rgba(181, 101, 43, 0.28);  /* hairlines on ink */
+  --line-strong:     rgba(181, 101, 43, 0.55);  /* input borders, menu borders */
+  --ember-wash:      rgba(232, 163, 61, 0.14);  /* active pill / selected item background */
+  --selection:       rgba(232, 163, 61, 0.32);
+  --scrim:           rgba(10, 13, 24, 0.74);    /* modal overlay */
+  --shadow-pop:      0 24px 60px rgba(0, 0, 0, 0.55);
+
+  /* Type */
+  --font-display: "Fraunces", Georgia, serif;          /* titles, headings, H2/H3, pull quotes */
+  --font-body:    "Newsreader", Georgia, serif;        /* writing area + published body */
+  --font-ui:      "Instrument Sans", system-ui, sans-serif; /* all chrome */
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+  --fs-title:     46px;  /* editor title (56px in empty state placeholder) */
+  --fs-title-pub: 54px;  /* published post title */
+  --fs-subtitle:  22px;  /* italic, stone */
+  --fs-body:      20px;  /* line-height 1.7 editor / 1.75 published */
+  --fs-h2:        30px;
+  --fs-h3:        24px;
+  --fs-caption:   16px;  /* italic, stone, centred */
+  --fs-ui:        14px;
+  --fs-ui-sm:     13px;
+  --fs-label:     11px;  /* uppercase, letter-spacing .08em, weight 600 */
+  --fs-code:      14px;
+
+  /* Layout */
+  --canvas-w:     720px;   /* writing column */
+  --wide-w:       960px;   /* "wide" image */
+  --topbar-h:     64px;
+  --sidebar-w:    400px;
+  --radius-sm:    6px;
+  --radius:       8px;
+  --radius-lg:    12px;
+  --radius-pill:  999px;
+  --hit:          44px;    /* minimum touch target */
+}
+
+::selection { background: var(--selection); }
+body { margin: 0; background: var(--ink); color: var(--paper); font-family: var(--font-ui); }

@@ -1,0 +1,30 @@
+/* Preview (screen 04): espresso bar, then the real post page in a frame. */
+
+.preview { position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; background: var(--ink); }
+.preview[hidden] { display: none; }
+
+.preview-bar {
+  height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 16px; padding: 0 16px 0 20px;
+  background: var(--espresso); border-bottom: 1px solid var(--line-strong);
+}
+.preview-bar__label { display: inline-flex; align-items: center; gap: 8px; font-size: var(--fs-ui); font-weight: 600; color: var(--ember); }
+.preview-bar__label .icon { width: 18px; height: 18px; stroke-width: 1.7; }
+.preview-bar__path { font-family: var(--font-mono); font-size: 12px; color: var(--stone-on-panel); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.preview-bar .btn--outline { color: var(--paper); }
+.segmented--bar { height: auto; padding: 4px; border-color: rgba(181, 101, 43, .5); }
+.segmented--bar button { height: 30px; padding: 0 14px; }
+.segmented--bar button[aria-pressed="true"] { background: rgba(232, 163, 61, .18); color: var(--ember); }
+
+.preview-stage { flex-grow: 1; min-height: 0; display: flex; justify-content: center; background: var(--ink); }
+.preview-frame { width: 100%; height: 100%; border: 0; background: var(--ink); display: block; }
+/* mobile: the page at 390px inside a device-like frame */
+.preview.is-mobile .preview-stage { padding: 24px 0; background: #0D1220; }
+.preview.is-mobile .preview-frame {
+  width: 390px; border-radius: 28px; border: 8px solid var(--espresso); box-shadow: var(--shadow-pop);
+}
+
+@media (max-width: 760px) {
+  .preview-bar { gap: 8px; padding: 0 8px; }
+  .preview-bar__path, .preview-bar .segmented--bar { display: none; }
+  .preview-bar .btn--outline { padding: 0 10px; }
+}

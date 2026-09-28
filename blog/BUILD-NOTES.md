@@ -16,6 +16,9 @@ blog/
   posts/<slug>.html
   assets/blog.js  assets/img/
   tools/build.mjs   (optional helper, see below)
+  tools/post-page.mjs  (Markdown post → page; shared with the editor preview)
+  editor/           (built blog editor, from tools/blog-editor/)
+  posts/<slug>.md   images/<slug>/   (posts written in the editor)
 ```
 
 - **Colours:** components only use the role tokens (`--ink`, `--espresso`, `--copper`, `--ember`, `--stone`, `--paper`, plus the derived `--paper-soft`, `--line`, `--copper-text`, `--ember-text`). The only hex values are in the two token blocks at the top of `theme.css`.
@@ -38,6 +41,22 @@ blog/
    - `search-index.json` and `feed.xml`
 
 If Node isn't available, you can edit the marked regions by hand. The output is plain HTML.
+
+## Writing a post in the blog editor (Markdown)
+
+The editor lives at `blog/editor/` (open `…/blog/editor/` on the live site; it's `noindex` and not linked anywhere). Its source is `tools/blog-editor/`. Drafts are saved in that browser's IndexedDB, so they stay on the device you wrote them on until you export them.
+
+1. Write the post, pick a category, and set the section, excerpt, tags and date in Post settings (the sidebar icon or Ctrl/⌘ \\).
+2. Publish, or Export Markdown (Ctrl/⌘ ⇧ E). With images, download the `.zip` and unzip it at the repo root. It contains `blog/posts/<slug>.md` and `blog/images/<slug>/…`.
+3. Run `node blog/tools/build.mjs`. It turns each `blog/posts/*.md` into `blog/posts/<slug>.html` with `blog/tools/post-page.mjs`, then refreshes the lists as above.
+   - A post is written only when it has `draft: false` and its `date` has arrived. Scheduled posts go live the first time the build runs on or after their date.
+   - Pages built from Markdown start with a "Generated from blog/posts/<slug>.md" comment. Edit the `.md`, not the `.html`. Deleting the `.md` removes its page on the next build, and hand-written pages are never overwritten.
+   - Markdown posts need `sub:` (the section) so they can be filed; the editor asks for it before export.
+4. Commit and push.
+
+The editor's Preview renders with the same `post-page.mjs` and `theme.css`, so it shows the page the build will write. The Markdown format is `docs/blog-editor/spec/sample-post.md` + `frontmatter.schema.json`.
+
+To work on the editor itself: `cd tools/blog-editor && npm install`, then `npm run dev` (http://localhost:5178), `npm test`, and `npm run build` (writes `blog/editor/`; commit that folder).
 If a post is cross-posted, add `"substack": "https://aadityagoswami.substack.com/p/…"` to its meta block. The script then puts a small "Also on Substack ↗" line inside the post, above the tags.
 The two older Substack essays under "From the archive" are the `ARCHIVE` list at the top of `build.mjs`.
 

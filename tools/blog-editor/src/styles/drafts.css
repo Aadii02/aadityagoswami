@@ -1,0 +1,104 @@
+/* Writing desk / drafts list (screen 05). */
+
+.desk { min-height: 100dvh; display: flex; flex-direction: column; }
+.desk-bar {
+  height: var(--topbar-h); flex-shrink: 0; display: flex; align-items: center; gap: 16px;
+  padding: 0 20px 0 24px; border-bottom: 1px solid var(--line);
+}
+.desk-bar__name { font-family: var(--font-display); font-size: 19px; font-weight: 500; white-space: nowrap; }
+.desk-bar__slash { color: var(--copper); }
+.desk-bar__app { font-size: var(--fs-ui); color: var(--stone); white-space: nowrap; }
+.desk-bar .btn--primary { padding: 0 18px; }
+
+.desk-main { width: min(1180px, 100% - 32px); margin: 0 auto; padding: 44px 0 80px; }
+.desk-title { margin: 0; font-family: var(--font-display); font-size: 44px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.15; }
+.desk-sub { margin: 8px 0 0; font-family: var(--font-body); font-style: italic; font-size: 19px; color: var(--stone); }
+
+.desk-filters { margin-top: 30px; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid rgba(181, 101, 43, .3); }
+.desk-tabs { display: flex; gap: 4px; }
+.desk-tab {
+  height: var(--hit); padding: 0 12px; border: 0; border-bottom: 2px solid transparent; background: transparent;
+  color: var(--stone); font-size: var(--fs-ui); font-weight: 500; white-space: nowrap;
+}
+.desk-tab:hover { color: var(--paper); }
+.desk-tab[aria-pressed="true"] { border-bottom-color: var(--ember); color: var(--paper); font-weight: 600; }
+.desk-tab[aria-pressed="true"] .desk-tab__n { color: var(--stone); font-weight: 500; }
+.desk-cats { display: flex; gap: 6px; padding-bottom: 6px; }
+.pill--sm { height: 32px; padding: 0 12px; font-size: 12px; font-weight: 400; }
+.desk-search {
+  height: 36px; width: 240px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; padding: 0 12px;
+  border-radius: var(--radius); border: 1px solid rgba(181, 101, 43, .45); background: #161C2F; color: var(--stone);
+}
+.desk-search .icon { width: 15px; height: 15px; stroke-width: 1.8; }
+.desk-search input { flex-grow: 1; min-width: 0; border: 0; background: transparent; color: var(--paper); font-size: var(--fs-ui-sm); }
+.desk-search input:focus-visible { outline: none; }
+.desk-search:focus-within { border-color: var(--ember); }
+.desk-search input::-webkit-search-cancel-button { filter: invert(.6); }
+
+.desk-table { width: 100%; margin-top: 4px; border-collapse: collapse; font-size: var(--fs-ui); }
+.desk-table th {
+  padding: 14px 12px; text-align: left; font-size: var(--fs-label); font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--stone);
+}
+.desk-table th:first-child, .desk-table td:first-child { padding-left: 16px; }
+.desk-table td { padding: 14px 12px; color: var(--stone); vertical-align: middle; }
+.desk-table tbody tr { border-top: 1px solid rgba(181, 101, 43, .2); cursor: pointer; }
+.desk-table tbody tr:last-child { border-bottom: 1px solid rgba(181, 101, 43, .2); }
+.desk-table tbody tr:hover td, .desk-table tbody tr:focus-within td, .desk-table tbody tr.is-confirming td { background: rgba(59, 42, 34, .65); }
+.desk-table tbody tr:hover td:first-child, .desk-table tbody tr:focus-within td:first-child { border-radius: 10px 0 0 10px; }
+.desk-table tbody tr:hover td:last-child, .desk-table tbody tr:focus-within td:last-child { border-radius: 0 10px 10px 0; }
+/* muted text sits on espresso in the hovered row, so it switches to the lighter panel tone */
+.desk-table tbody tr:hover td, .desk-table tbody tr:focus-within td { color: var(--stone-on-panel); }
+
+.col-cat { width: 150px; } .col-edited { width: 130px; } .col-status { width: 170px; }
+.col-words { width: 70px; text-align: right !important; font-variant-numeric: tabular-nums; }
+.col-actions { width: 180px; }
+.desk-table td.col-actions { padding-top: 8px; padding-bottom: 8px; }
+
+.row-title {
+  display: block; font-family: var(--font-display); font-size: 19px; line-height: 1.3; color: var(--paper); text-decoration: none;
+}
+.row-title:hover { color: var(--ember); }
+.row-title--untitled { font-style: italic; color: var(--stone); }
+.row-blurb { display: block; margin-top: 3px; font-size: var(--fs-ui-sm); }
+.tag {
+  display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: var(--radius-pill);
+  border: 1px solid var(--copper); color: var(--paper); font-size: 12px; white-space: nowrap;
+}
+.row-none { font-size: var(--fs-ui-sm); }
+
+.status { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.status__dot { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid currentColor; }
+.status--scheduled { color: var(--ember); font-weight: 500; }
+.status--scheduled .status__dot { border: 0; background: var(--ember); }
+.desk-table tr td .status--scheduled { color: var(--ember); }
+.status--published { color: var(--paper); }
+.desk-table tr td .status--published { color: var(--paper); }
+.status--published .icon { width: 14px; height: 14px; color: var(--copper-text); stroke-width: 2.4; }
+
+.row-actions { display: flex; gap: 2px; justify-content: flex-end; align-items: center; opacity: 0; }
+tr:hover .row-actions, tr:focus-within .row-actions, tr.is-confirming .row-actions { opacity: 1; }
+.icon-btn--sm { width: 40px; height: 40px; color: var(--paper); }
+.icon-btn--sm .icon { width: 17px; height: 17px; }
+.row-confirm { font-size: var(--fs-ui-sm); color: var(--paper); margin-right: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
+.btn--sm { height: 32px; padding: 0 12px; font-size: var(--fs-ui-sm); border: 1px solid var(--line-strong); color: var(--paper); }
+.btn--danger { border-color: var(--ember); color: var(--ember); }
+tr.is-confirming .col-actions { width: auto; }
+
+.desk-empty { margin: 32px 16px; font-family: var(--font-body); font-style: italic; font-size: 18px; color: var(--stone); }
+
+@media (max-width: 1000px) {
+  .desk-filters { flex-wrap: wrap; gap: 8px 16px; padding-bottom: 8px; }
+  .desk-filters > .topbar__spacer { display: none; }
+  .col-edited, .col-words { display: none; }
+}
+@media (max-width: 700px) {
+  .desk-bar { padding: 0 12px; gap: 10px; }
+  .desk-bar__app, .desk-bar__slash { display: none; }
+  .desk-title { font-size: 34px; }
+  .desk-search { width: 100%; }
+  .col-cat, .col-status { display: none; }
+  .desk-table thead { display: none; }
+  .row-actions { opacity: 1; }
+  .col-actions { width: auto; }
+}

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Drafts list</title>
+</head>
+<body>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+body{margin:0;background:#121829;color:#EFE6D2;font-family:'Instrument Sans',system-ui,sans-serif}
+a{color:#EFE6D2}a:hover{color:#E8A33D}
+button,input{font-family:inherit}
+input::placeholder{color:#8A8F98;opacity:1}
+</style>
+<div style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #121829; display: flex; flex-direction: column; font-family: 'Instrument Sans', system-ui, sans-serif; color: #EFE6D2">
+
+<header style="height: 64px; flex-shrink: 0; box-sizing: border-box; padding: 0 20px 0 24px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid rgba(181,101,43,0.28)">
+<span style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 500">Aaditya Goswami</span>
+<span style="color: #B5652B">/</span>
+<span style="font-size: 14px; color: #8A8F98">Blog studio</span>
+<div style="flex-grow: 1"></div>
+<a href="01-new-post-empty.html" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 18px; border-radius: 8px; background: #E8A33D; color: #121829; text-decoration: none; font-size: 14px; font-weight: 600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 2; stroke-linecap: round"><path d="M12 5v14M5 12h14"></path></svg>New post</a>
+</header>
+
+<main style="width: 1180px; margin: 0 auto; padding-top: 44px; display: flex; flex-direction: column">
+<div style="display: flex; align-items: flex-end; justify-content: space-between">
+<div>
+<h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-size: 44px; font-weight: 500; letter-spacing: -0.01em">Writing desk</h1>
+<p style="margin: 8px 0 0; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 19px; color: #8A8F98">7 pieces — 4 drafts, 1 scheduled, 2 published</p>
+</div>
+</div>
+
+<div style="margin-top: 30px; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid rgba(181,101,43,0.3)">
+<div aria-label="Status filter" style="display: flex; gap: 4px">
+<button type="button" aria-pressed="true" style="height: 44px; padding: 0 12px; border: 0; border-bottom: 2px solid #E8A33D; background: transparent; color: #EFE6D2; font-size: 14px; font-weight: 600; cursor: pointer">All <span style="color: #8A8F98; font-weight: 500">7</span></button>
+<button type="button" aria-pressed="false" style="height: 44px; padding: 0 12px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #8A8F98; font-size: 14px; font-weight: 500; cursor: pointer">Drafts 4</button>
+<button type="button" aria-pressed="false" style="height: 44px; padding: 0 12px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #8A8F98; font-size: 14px; font-weight: 500; cursor: pointer">Scheduled 1</button>
+<button type="button" aria-pressed="false" style="height: 44px; padding: 0 12px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #8A8F98; font-size: 14px; font-weight: 500; cursor: pointer">Published 2</button>
+</div>
+<div style="flex-grow: 1"></div>
+<div aria-label="Category filter" style="display: flex; gap: 6px; padding-bottom: 6px">
+<button type="button" style="height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(181,101,43,0.6); background: transparent; color: #EFE6D2; font-size: 12px; cursor: pointer">Food &amp; Places</button>
+<button type="button" style="height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(181,101,43,0.6); background: transparent; color: #EFE6D2; font-size: 12px; cursor: pointer">Tech</button>
+<button type="button" style="height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid rgba(181,101,43,0.6); background: transparent; color: #EFE6D2; font-size: 12px; cursor: pointer">Mind &amp; Meaning</button>
+</div>
+<div style="height: 36px; width: 240px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; box-sizing: border-box; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(181,101,43,0.45); background: #161C2F; color: #8A8F98">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 1.8; stroke-linecap: round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+<input aria-label="Search posts" placeholder="Search posts" style="flex-grow: 1; min-width: 0; border: 0; outline: none; background: transparent; color: #EFE6D2; font-size: 13px">
+</div>
+</div>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 4px; font-size: 14px">
+<thead>
+<tr style="text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #8A8F98">
+<th style="padding: 14px 16px; font-weight: 600">Title</th>
+<th style="padding: 14px 12px; width: 150px; font-weight: 600">Category</th>
+<th style="padding: 14px 12px; width: 130px; font-weight: 600">Last edited</th>
+<th style="padding: 14px 12px; width: 170px; font-weight: 600">Status</th>
+<th style="padding: 14px 12px; width: 70px; font-weight: 600; text-align: right">Words</th>
+<th style="padding: 14px 12px; width: 136px"><span style="position: absolute; left: -9999px">Actions</span></th>
+</tr>
+</thead>
+<tbody>
+
+<tr style="background: rgba(59,42,34,0.65); border-top: 1px solid rgba(181,101,43,0.2)">
+<td style="padding: 14px 16px; border-radius: 10px 0 0 10px"><a href="02-slash-menu.html" style="display: block; font-family: Fraunces, Georgia, serif; font-size: 19px; text-decoration: none">Building a flight computer on a student budget</a><span style="display: block; margin-top: 3px; font-size: 13px; color: #B3AA9C">Every rocket needs a brain. For a student team, that brain has to be cheap…</span></td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid #B5652B; font-size: 12px">Tech</span></td>
+<td style="padding: 14px 12px; color: #B3AA9C">2 min ago</td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; align-items: center; gap: 7px; color: #B3AA9C"><span style="width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid #B3AA9C"></span>Draft</span></td>
+<td style="padding: 14px 12px; text-align: right; color: #B3AA9C; font-variant-numeric: tabular-nums">842</td>
+<td style="padding: 8px 12px; border-radius: 0 10px 10px 0"><div style="display: flex; gap: 2px; justify-content: flex-end">
+<a href="02-slash-menu.html" aria-label="Edit" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #EFE6D2"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20h4L19 9l-4-4L4 16z"></path></svg></a>
+<a href="04-preview.html" aria-label="Preview" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #EFE6D2"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></a>
+<a href="07-export-markdown.html" aria-label="Export Markdown" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: #EFE6D2"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"></path></svg></a>
+</div></td>
+</tr>
+
+<tr style="border-top: 1px solid rgba(181,101,43,0.2)">
+<td style="padding: 14px 16px"><a href="03-settings-sidebar.html" style="display: block; font-family: Fraunces, Georgia, serif; font-size: 19px; text-decoration: none">Paranthe Wali Gali before the crowds</a><span style="display: block; margin-top: 3px; font-size: 13px; color: #8A8F98">Most people come here at lunch, when the lane is shoulder-to-shoulder…</span></td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid #B5652B; font-size: 12px">Food &amp; Places</span></td>
+<td style="padding: 14px 12px; color: #8A8F98">Today, 9:14</td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; align-items: center; gap: 7px; color: #8A8F98"><span style="width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid #8A8F98"></span>Draft</span></td>
+<td style="padding: 14px 12px; text-align: right; color: #8A8F98; font-variant-numeric: tabular-nums">1,106</td>
+<td style="padding: 14px 12px"></td>
+</tr>
+
+<tr style="border-top: 1px solid rgba(181,101,43,0.2)">
+<td style="padding: 14px 16px"><a href="04-preview.html" style="display: block; font-family: Fraunces, Georgia, serif; font-size: 19px; text-decoration: none">Notes on building things that outlast you</a><span style="display: block; margin-top: 3px; font-size: 13px; color: #8A8F98">Leonardo filled thousands of notebook pages with machines he never built…</span></td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid #B5652B; font-size: 12px">Mind &amp; Meaning</span></td>
+<td style="padding: 14px 12px; color: #8A8F98">Yesterday</td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; align-items: center; gap: 7px; color: #E8A33D; font-weight: 500"><span style="width: 7px; height: 7px; border-radius: 50%; background: #E8A33D"></span>Scheduled · 30 Sep</span></td>
+<td style="padding: 14px 12px; text-align: right; color: #8A8F98; font-variant-numeric: tabular-nums">1,240</td>
+<td style="padding: 14px 12px"></td>
+</tr>
+
+<tr style="border-top: 1px solid rgba(181,101,43,0.2)">
+<td style="padding: 14px 16px"><a href="01-new-post-empty.html" style="display: block; font-family: Fraunces, Georgia, serif; font-size: 19px; text-decoration: none">Why my portfolio is plain HTML</a><span style="display: block; margin-top: 3px; font-size: 13px; color: #8A8F98">No framework, no build step — just files I can still open in ten years…</span></td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid #B5652B; font-size: 12px">Tech</span></td>
+<td style="padding: 14px 12px; color: #8A8F98">22 Sep</td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; align-items: center; gap: 7px; color: #EFE6D2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4874F" style="stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12l5 5 9-10"></path></svg>Published</span></td>
+<td style="padding: 14px 12px; text-align: right; color: #8A8F98; font-variant-numeric: tabular-nums">960</td>
+<td style="padding: 14px 12px"></td>
+</tr>
+
+<tr style="border-top: 1px solid rgba(181,101,43,0.2)">
+<td style="padding: 14px 16px"><a href="01-new-post-empty.html" style="display: block; font-family: Fraunces, Georgia, serif; font-size: 19px; text-decoration: none">On the fear of starting</a><span style="display: block; margin-top: 3px; font-size: 13px; color: #8A8F98">The blank page isn’t empty. It’s full of every version I haven’t written yet…</span></td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid #B5652B; font-size: 12px">Mind &amp; Meaning</span></td>
+<td style="padding: 14px 12px; color: #8A8F98">18 Sep</td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; align-items: center; gap: 7px; color: #8A8F98"><span style="width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid #8A8F98"></span>Draft</span></td>
+<td style="padding: 14px 12px; text-align: right; color: #8A8F98; font-variant-numeric: tabular-nums">410</td>
+<td style="padding: 14px 12px"></td>
+</tr>
+
+<tr style="border-top: 1px solid rgba(181,101,43,0.2)">
+<td style="padding: 14px 16px"><a href="01-new-post-empty.html" style="display: block; font-family: Fraunces, Georgia, serif; font-size: 19px; text-decoration: none">Three dhabas between Delhi and Manali</a><span style="display: block; margin-top: 3px; font-size: 13px; color: #8A8F98">The best meal of the trip came from a kitchen with no menu and one burner…</span></td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; height: 26px; align-items: center; padding: 0 10px; border-radius: 999px; border: 1px solid #B5652B; font-size: 12px">Food &amp; Places</span></td>
+<td style="padding: 14px 12px; color: #8A8F98">9 Sep</td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; align-items: center; gap: 7px; color: #EFE6D2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4874F" style="stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12l5 5 9-10"></path></svg>Published</span></td>
+<td style="padding: 14px 12px; text-align: right; color: #8A8F98; font-variant-numeric: tabular-nums">1,530</td>
+<td style="padding: 14px 12px"></td>
+</tr>
+
+<tr style="border-top: 1px solid rgba(181,101,43,0.2); border-bottom: 1px solid rgba(181,101,43,0.2)">
+<td style="padding: 14px 16px"><a href="01-new-post-empty.html" style="display: block; font-family: Fraunces, Georgia, serif; font-style: italic; font-size: 19px; color: #8A8F98; text-decoration: none">Untitled draft</a><span style="display: block; margin-top: 3px; font-size: 13px; color: #8A8F98">No content yet</span></td>
+<td style="padding: 14px 12px; color: #8A8F98; font-size: 13px">—</td>
+<td style="padding: 14px 12px; color: #8A8F98">12 Sep</td>
+<td style="padding: 14px 12px"><span style="display: inline-flex; align-items: center; gap: 7px; color: #8A8F98"><span style="width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid #8A8F98"></span>Draft</span></td>
+<td style="padding: 14px 12px; text-align: right; color: #8A8F98; font-variant-numeric: tabular-nums">0</td>
+<td style="padding: 14px 12px"></td>
+</tr>
+
+</tbody>
+</table>
+</main>
+</div>
+</body>
+</html>

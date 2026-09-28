@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blog post frontmatter",
+  "type": "object",
+  "required": ["title", "slug", "category", "date"],
+  "additionalProperties": false,
+  "properties": {
+    "title":    { "type": "string", "minLength": 1 },
+    "subtitle": { "type": "string", "description": "Optional. Omit the key entirely when empty." },
+    "slug":     { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "category": { "enum": ["food-and-places", "tech", "mind-and-meaning"] },
+    "sub":      { "type": "string", "minLength": 1, "description": "Section inside the category on /blog (blog/tools/build.mjs CATS): Food | Cities | Treks, Web | AI | DevOps | Aerospace, Habits | Philosophy | Reflections. Optional here; the site build needs it to list the post." },
+    "tags":     { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }, "uniqueItems": true },
+    "date":     { "type": "string", "format": "date", "description": "YYYY-MM-DD publish date" },
+    "excerpt":  { "type": "string", "maxLength": 160 },
+    "cover":    { "type": "string", "description": "Site-absolute path, e.g. /blog/images/<slug>/cover.jpg" },
+    "draft":    { "type": "boolean", "default": true }
+  }
+}

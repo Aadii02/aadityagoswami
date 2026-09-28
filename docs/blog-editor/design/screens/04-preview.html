@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Live preview</title>
+</head>
+<body>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+body{margin:0;background:#121829;color:#EFE6D2;font-family:'Instrument Sans',system-ui,sans-serif}
+a{color:#E8A33D}a:hover{color:#EFE6D2}
+button{font-family:inherit}
+</style>
+<div style="width: 1440px; height: 900px; position: relative; overflow: hidden; background: #121829; display: flex; flex-direction: column; font-family: 'Instrument Sans', system-ui, sans-serif; color: #EFE6D2">
+
+<div style="height: 56px; flex-shrink: 0; box-sizing: border-box; padding: 0 16px 0 20px; display: flex; align-items: center; gap: 16px; background: #3B2A22; border-bottom: 1px solid rgba(181,101,43,0.55)">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #E8A33D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>Preview</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #B3AA9C">/blog/notes-on-building-things-that-outlast-you</span>
+<div style="flex-grow: 1"></div>
+<div aria-label="Viewport" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 8px; background: #2A1E18; border: 1px solid rgba(181,101,43,0.5)">
+<button type="button" aria-pressed="true" style="height: 30px; padding: 0 14px; border: 0; border-radius: 5px; background: rgba(232,163,61,0.18); color: #E8A33D; font-size: 13px; font-weight: 600; cursor: pointer">Desktop</button>
+<button type="button" aria-pressed="false" style="height: 30px; padding: 0 14px; border: 0; border-radius: 5px; background: transparent; color: #B3AA9C; font-size: 13px; font-weight: 500; cursor: pointer">Mobile</button>
+</div>
+<div style="flex-grow: 1"></div>
+<a href="01-new-post-empty.html" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; border-radius: 8px; border: 1px solid #B5652B; color: #EFE6D2; text-decoration: none; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M4 20h4L19 9l-4-4L4 16z"></path></svg>Back to editing</a>
+<button type="button" style="height: 40px; padding: 0 20px; border-radius: 8px; border: 0; background: #E8A33D; color: #121829; font-size: 14px; font-weight: 600; cursor: pointer">Publish</button>
+</div>
+
+<nav aria-label="Site" style="height: 76px; flex-shrink: 0; box-sizing: border-box; padding: 0 160px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(181,101,43,0.2)">
+<span style="font-family: Fraunces, Georgia, serif; font-size: 21px; font-weight: 500">Aaditya Goswami</span>
+<div style="display: flex; gap: 32px; font-size: 15px">
+<span style="color: #8A8F98">Work</span>
+<span style="color: #EFE6D2; padding-bottom: 4px; border-bottom: 1px solid #B5652B">Blog</span>
+<span style="color: #8A8F98">About</span>
+</div>
+</nav>
+
+<article style="width: 680px; margin: 0 auto; padding-top: 56px; display: flex; flex-direction: column">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #D4874F">Mind &amp; Meaning</span>
+<h1 style="margin: 14px 0 0; font-family: Fraunces, Georgia, serif; font-size: 54px; font-weight: 500; line-height: 1.08; letter-spacing: -0.015em">Notes on building things that outlast you</h1>
+<p style="margin: 16px 0 0; font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 23px; line-height: 1.4; color: #8A8F98">On Leonardo’s notebooks, unfinished work, and why I keep a workshop instead of a to-do list.</p>
+<div style="margin-top: 22px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: #8A8F98">
+<span style="color: #EFE6D2">Aaditya Goswami</span><span>·</span><span>30 September 2026</span><span>·</span><span>5 min read</span>
+</div>
+<div style="margin-top: 32px; height: 300px; border-radius: 10px; border: 1px solid rgba(181,101,43,0.35); background: repeating-linear-gradient(135deg, #1A2036 0 14px, #1D2439 14px 28px); display: flex; align-items: center; justify-content: center; color: #8A8F98; font-size: 14px">[Cover image]</div>
+<div style="margin-top: 36px; font-family: Newsreader, Georgia, serif; font-size: 20px; line-height: 1.75">
+<span style="float: left; font-family: Fraunces, Georgia, serif; font-size: 72px; line-height: 0.9; padding: 6px 10px 0 0; color: #D4874F">L</span>eonardo filled thousands of notebook pages with machines he never built. What survived wasn’t the finished work — it was the habit of looking closely and writing it down.
+</div>
+<blockquote style="margin: 32px 0 0; padding: 0 0 0 36px; position: relative; font-family: Fraunces, Georgia, serif; font-style: italic; font-size: 30px; line-height: 1.3">
+<span aria-hidden="true" style="position: absolute; left: 0; top: -6px; font-size: 56px; color: #D4874F">“</span>Learning never exhausts the mind.
+<span style="display: block; margin-top: 10px; font-family: 'Instrument Sans', system-ui, sans-serif; font-style: normal; font-size: 14px; color: #8A8F98">— Leonardo da Vinci</span>
+</blockquote>
+</article>
+</div>
+</body>
+</html>
