@@ -20,3 +20,6 @@ desktop.ini
 
 # design handoff archives (unzipped copies live in docs/)
 /design import/
+
+# the blog editor runs locally (tools/blog-editor: npm run dev); its static build is not deployed
+/blog/editor/

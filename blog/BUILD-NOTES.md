@@ -17,7 +17,6 @@ blog/
   assets/blog.js  assets/img/
   tools/build.mjs   (optional helper, see below)
   tools/post-page.mjs  (Markdown post → page; shared with the editor preview)
-  editor/           (built blog editor, from tools/blog-editor/)
   posts/<slug>.md   images/<slug>/   (posts written in the editor)
 ```
 
@@ -44,7 +43,7 @@ If Node isn't available, you can edit the marked regions by hand. The output is 
 
 ## Writing a post in the blog editor (Markdown)
 
-The editor lives at `blog/editor/` (open `…/blog/editor/` on the live site; it's `noindex` and not linked anywhere). Its source is `tools/blog-editor/`. Drafts are saved in that browser's IndexedDB, so they stay on the device you wrote them on until you export them.
+The editor runs locally and isn't deployed: `cd tools/blog-editor && npm install` once, then `npm run dev` and open http://localhost:5178. Drafts are saved in that browser's IndexedDB, so they stay on this machine until you export them.
 
 1. Write the post, pick a category, and set the section, excerpt, tags and date in Post settings (the sidebar icon or Ctrl/⌘ \\).
 2. Publish, or Export Markdown (Ctrl/⌘ ⇧ E). With images, download the `.zip` and unzip it at the repo root. It contains `blog/posts/<slug>.md` and `blog/images/<slug>/…`.
@@ -56,7 +55,7 @@ The editor lives at `blog/editor/` (open `…/blog/editor/` on the live site; it
 
 The editor's Preview renders with the same `post-page.mjs` and `theme.css`, so it shows the page the build will write. The Markdown format is `docs/blog-editor/spec/sample-post.md` + `frontmatter.schema.json`.
 
-To work on the editor itself: `cd tools/blog-editor && npm install`, then `npm run dev` (http://localhost:5178), `npm test`, and `npm run build` (writes `blog/editor/`; commit that folder).
+To work on the editor itself: `npm test` runs the Markdown tests. `npm run build` writes a static copy to `blog/editor/`, which is git-ignored.
 If a post is cross-posted, add `"substack": "https://aadityagoswami.substack.com/p/…"` to its meta block. The script then puts a small "Also on Substack ↗" line inside the post, above the tags.
 The two older Substack essays under "From the archive" are the `ARCHIVE` list at the top of `build.mjs`.
 
