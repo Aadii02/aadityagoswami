@@ -17,3 +17,6 @@ desktop.ini
 *.tmp
 .~lock.*#
 *.lnk
+
+# design handoff archives (unzipped copies live in docs/)
+/design import/
